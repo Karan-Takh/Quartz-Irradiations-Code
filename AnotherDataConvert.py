@@ -10,13 +10,13 @@ def comma_remover(sheet):
     sheetdf = sheetdf.set_index(cols[0])
     # Create two new dataframes, one for absorbance and one for transmittance. Set the index as the first column, wavelength, for both.
     # Absorbance should always be the second column
-    data = sheetdf[cols[1]]
-    print("Data is \n", data)
+    # data = sheetdf[cols[1]]
+    # print("Data is \n", data)
     abs_df = sheetdf.iloc[:, 0]
     # abs_df = pd.DataFrame(data=data, index=sheetdf[cols[0]])
     # Transmittance will always be the third column. 
-    # trans_df = pd.DataFrame(index=sheetdf[cols[0]], columns=sheetdf)
-    return abs_df, # trans_df
+    trans_df = sheetdf.iloc[:, 1]
+    return abs_df, trans_df
 
 
 y = input(
