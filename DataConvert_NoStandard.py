@@ -138,9 +138,9 @@ for i in range(0, int(amount)):
     data.append(obj['l' + str(i)])
 
 # writes new data sheet
-x = input('Please input the name you would want to save the new file as. Please include file noter: ')
+x = input('Please input the name you would want to save the new file as. ')
 export_data = zip_longest(*data, fillvalue='')
-with open(str(x), 'w+', encoding="ISO-8859-1", newline='') as file:
+with open(str(x)+".csv", 'w+', encoding="ISO-8859-1", newline='') as file:
     writer = csv.writer(file)
     writer.writerow(fieldnames)
     writer.writerows(export_data)
