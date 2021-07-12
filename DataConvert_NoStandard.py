@@ -85,7 +85,7 @@ y = input(
 comma_remover(y)
 
 
-Input(str(y))Batch BOKD05B Sample 1 - Sheet1
+Input(str(y))
 
 fileNames.remove(-999)
 
@@ -103,7 +103,7 @@ lamb = np.genfromtxt(str(y) + '.csv', delimiter=',', skip_header=3, usecols=np.a
 # Trans is the transmittivities, read into a separate array. 
 Trans = np.genfromtxt(str(y) + '.csv', delimiter=',', skip_header=3, usecols=np.arange(2, 3))
 NaNFinder(Trans, 'nan')
-# The range of wavelengths is usually 190 - 1100. Probably won't work for other ranges we decide to use. 
+# The range of wavelengths is usually 190 - 1100. Probably won't work for other ranges we decide to use. However, for the irradiations we'll be sticking to that.
 lamb = lamb[0:911]
 print("lamb is \n", lamb) 
 Range = 911
