@@ -23,8 +23,7 @@ y = input(
 # Call comma remover function to remove the commas from the first column of the file. 
 pd.set_option("display.max_rows", None, "display.max_columns", None)
 # print(comma_remover(y)[0])
-# Create variable for the tuple produced by the comma remover function. 
-df_tuple = comma_remover(y)
+
 
 
 
@@ -38,26 +37,26 @@ def data_shift(df_tuple):
         # Loop through every index. 
         index_list = d.index.tolist()
         for index in index_list:
-            # Check if NaN value exists in the wavelength column at each index. This will indicate a line break. 
-            if d['Wavelength'][index].isnull():
+            # Check if NaN value exists in the wavelength column (0th column) at each index. This will indicate a line break. 
+            if d[0][index].isnull():
                 nan_rows.append(index)
         # After the loop, get rid of every other item in the list of indices. This is because I just want the index of the first NaN of the NaN pairs. 
         nan_rows = nan_rows[0::2]
         # Loop through numbers in nan_rows, which are the indices of the rows with NaNs, and add three to get the batch name (hopefully this works every time)
         for item in nan_rows:
-            col_names.append(d['Wavelength'][item+3])
+            col_names.append(d[0][item+3])
         # Not sure if -1 is necessary. 
         for i in range(len(nan_rows)-1):
             # Create new column, named i, which will be the number of new columns. Can just delete those later. 
             # nan_rows + 2 because you want to start from the second of the pair of NaNs. 
-            d[i] = d.iloc[:, nan_rows[i]+4:nan_rows[i+2]]
+            d[i] = d.iloc[nan_rows[i]+4:nan_rows[i+2], 1]
     return df_tuple
 
-        
 
 
 
-
+# Print the first dataframe in the tuple of dataframes created by the data shift function. 
+print(data_shift(comma_remover(y))[0])
 
 
 
