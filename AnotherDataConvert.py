@@ -2,12 +2,10 @@ import pandas as pd
 
 # Create function to remove commas from data values in csv file and create dataframes for the absorbance and transmittance values separately.  
 def comma_remover(sheet):
-    # read the inputted data sheet into a pandas dataframe
-    sheetdf = pd.read_csv(sheet+'.csv')
+    # read the inputted data sheet into a pandas dataframe. Header = int to make the headers integer values 0, 1, 2, 3 ... 
+    sheetdf = pd.read_csv(sheet+'.csv', header=None)
     # create a list of the column names and remove all the commas in the data values in the first column. --- the list may actually not be necessary.
-    cols = list(sheetdf.columns)
-    sheetdf[cols[0]] = sheetdf[cols[0]].str.replace(',', '')
-    # sheetdf = sheetdf.set_index(cols[0])
+    sheetdf[0] = sheetdf[0].str.replace(',', '')
 
     # Create two new dataframes, one for absorbance and one for transmittance. Set the index as the first column, wavelength, for both.
     # Absorbance should always be the second column
@@ -22,7 +20,7 @@ y = input(
 
 # Call comma remover function to remove the commas from the first column of the file. 
 pd.set_option("display.max_rows", None, "display.max_columns", None)
-# print(comma_remover(y)[0])
+print(comma_remover(y)[0])
 
 
 
@@ -38,7 +36,8 @@ def data_shift(df_tuple):
         index_list = d.index.tolist()
         for index in index_list:
             # Check if NaN value exists in the wavelength column (0th column) at each index. This will indicate a line break. 
-            if d[0][index].isnull():
+            # Need to get index of each True value
+            if d[0][index] == 'NaN':
                 nan_rows.append(index)
         # After the loop, get rid of every other item in the list of indices. This is because I just want the index of the first NaN of the NaN pairs. 
         nan_rows = nan_rows[0::2]
