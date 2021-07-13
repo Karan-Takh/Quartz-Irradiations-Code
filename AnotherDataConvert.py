@@ -29,14 +29,23 @@ print(comma_remover(y)[0])
 
 # Find NaN rows and shift data accordingly. 
 nan_rows = list()
+col_names = list()
 # Loop through each dataframe d, absorbance and transmittance
 for d in comma_remover(y):
-    for index, row in d.iterrows():
-        is_nan_series = row.isnull()
-        if is_nan_series.any():
+    # Loop through every index. 
+    index_list = d.index.tolist()
+    for index in index_list:
+        # Check if NaN value exists in the wavelength column at each index. This will indicate a line break. 
+        if d['Wavelength'][index].isnull():
             nan_rows.append(index)
-    # Loop through numbers in nan_rows, which are the indices of the rows with 
+    # After the loop, get rid of every other item in the list of indices. This is because I just want the index of the first NaN of the NaN pairs. 
+    nan_rows = nan_rows[0::2]
+    # Loop through numbers in nan_rows, which are the indices of the rows with NaNs, and add three to get the batch name (hopefully this works every time)
     for item in nan_rows:
+        col_names.append(d['Wavelength'][item+3])
+    # Not sure if -1 is necessary. 
+    for i in range(len(nan_rows)-1):
+        d = dnan_rows[i]
         
 
 
