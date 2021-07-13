@@ -26,10 +26,11 @@ print(comma_remover(y)[0])
 
 
 # Find NaN rows and shift data accordingly. 
-nan_rows = list()
-col_names = list()
+
 
 def data_shift(df_tuple):
+    nan_rows = list()
+    col_names = list()
     # Loop through each dataframe d, absorbance and transmittance
     for d in df_tuple:
         # Loop through every index. 
