@@ -20,7 +20,7 @@ y = input(
 
 # Call comma remover function to remove the commas from the first column of the file. 
 pd.set_option("display.max_rows", None, "display.max_columns", None)
-print(comma_remover(y)[0])
+# print(comma_remover(y)[0])
 
 
 
@@ -37,8 +37,8 @@ def data_shift(df_tuple):
         index_list = d.index.tolist()
         for index in index_list:
             # Check if NaN value exists in the wavelength column (0th column) at each index. This will indicate a line break. 
-            # Need to get index of each True value
-            if d[0][index] == 'NaN':
+            # Need to get index of each True value (which indexer goes first?)
+            if d.iloc[index, 0] == 'NaN':
                 nan_rows.append(index)
         # After the loop, get rid of every other item in the list of indices. This is because I just want the index of the first NaN of the NaN pairs. 
         nan_rows = nan_rows[0::2]
@@ -50,13 +50,13 @@ def data_shift(df_tuple):
             # Create new column, named i, which will be the number of new columns. Can just delete those later. 
             # nan_rows + 2 because you want to start from the second of the pair of NaNs. 
             d[i] = d.iloc[nan_rows[i]+4:nan_rows[i+2], 1]
-    return df_tuple
-
+        print(d)
+   # return df_tuple
 
 
 
 # Print the first dataframe in the tuple of dataframes created by the data shift function. 
-print(data_shift(comma_remover(y))[0])
+print(data_shift(comma_remover(y)))
 
 
 
