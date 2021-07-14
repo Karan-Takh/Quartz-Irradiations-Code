@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-data = pd.read_csv("C:\\Users\\kwira\\Downloads\\both holders vs one holder.csv")
+data = pd.read_csv("C:\\Users\\kdee2\\Documents\\GitHub\\Quartz-Irradiations-Code\\One Holder 1 vs 2.csv")
 wavelength = data["wavelength"].tolist()
 
 fig, ax = plt.subplots()
@@ -24,7 +24,7 @@ for (columnName, columnData) in data.iteritems():
     else:
         y = data[f"{columnName}"].tolist()
         scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
-        ax.plot(wavelength, y, label=f"{columnName}", color=f"{color[colornum]}", linewidth=2)
+        ax.plot(wavelength, y, label=f"{columnName}", color=f"{color[colornum]}", linewidth=0.5)
         minimum.append(min(y))
         maximum.append(max(y))
         colornum = colornum + 1  # Changes the color to new color when there is a new batch
@@ -35,7 +35,7 @@ truemax = int(max(maximum)) + 10
 
 #Adds labels to graph
 plt.legend(bbox_to_anchor=(1.05, 1.0), loc='upper left')
-plt.title('2 cm Sample in Both vs One Holder')
+plt.title('Both Holders 2')
 plt.xlabel("Wavelength (nm)")
 plt.ylabel("Percent Transmission (%)")
 
