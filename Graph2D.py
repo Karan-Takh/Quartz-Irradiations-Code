@@ -37,21 +37,28 @@ for (columnName, columnData) in data.iteritems():
         minimum.append(min(y))
         maximum.append(max(y))
     else:
-        if scan%5 == 0:
-            y = data[f"{columnName}"].tolist()
-            scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
-            ax.plot(wavelength, y, label=f"{columnName}", color=f"{color[colornum]}", linewidth=0.5)
-            minimum.append(min(y))
-            maximum.append(max(y))
-            colornum = colornum+1 # Changes the color to new color when there is a new batch
-            scan = scan+1
-        else:
-            y = data[f"{columnName}"].tolist()
-            scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
-            ax.plot(wavelength, y, label=f"{columnName}", color=f"{color[colornum]}", linewidth=0.5)
-            minimum.append(min(y))
-            maximum.append(max(y))
-            scan = scan + 1
+        y = data[f"{columnName}"].tolist()
+        scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
+        ax.plot(wavelength, y, label=f"{columnName}", linewidth=0.5)
+        minimum.append(min(y))
+        maximum.append(max(y))
+        scan = scan + 1
+
+        # if scan%5 == 0:
+        #     y = data[f"{columnName}"].tolist()
+        #     scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
+        #     ax.plot(wavelength, y, label=f"{columnName}", color=f"{color[colornum]}", linewidth=0.5)
+        #     minimum.append(min(y))
+        #     maximum.append(max(y))
+        #     colornum = colornum+1 # Changes the color to new color when there is a new batch
+        #     scan = scan+1
+        # else:
+        #     y = data[f"{columnName}"].tolist()
+        #     scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
+        #     ax.plot(wavelength, y, label=f"{columnName}", color=f"{color[colornum]}", linewidth=0.5)
+        #     minimum.append(min(y))
+        #     maximum.append(max(y))
+        #     scan = scan + 1
 
 truemin = int(min(minimum)) - 10
 truemax = int(max(maximum)) + 10
@@ -71,11 +78,11 @@ plt.ylim(truemin,truemax)
 plt.xticks(np.arange(100, 1100+1, 100))
 
 # Creates lines to show PMT sensitive region
-xpmt1 = np.full(shape=len(list(range(truemin,truemax))), fill_value=200, dtype=int)
-ypmt1 = range(truemin, truemax)
-xpmt2 = np.full(shape=len(list(range(truemin,truemax))), fill_value=600, dtype=int)
-ypmt2 = range(truemin, truemax)
-ax.plot(xpmt1, ypmt1, color='b', linewidth=2)
-ax.plot(xpmt2, ypmt2, color='b', linewidth=2)
+# xpmt1 = np.full(shape=len(list(range(truemin,truemax))), fill_value=200, dtype=int)
+# ypmt1 = range(truemin, truemax)
+# xpmt2 = np.full(shape=len(list(range(truemin,truemax))), fill_value=600, dtype=int)
+# ypmt2 = range(truemin, truemax)
+# ax.plot(xpmt1, ypmt1, color='b', linewidth=2)
+# ax.plot(xpmt2, ypmt2, color='b', linewidth=2)
 
 plt.show()
