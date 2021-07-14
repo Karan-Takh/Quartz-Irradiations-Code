@@ -50,7 +50,7 @@ def data_shift(df_tuple: tuple):
         for i in range(len(nan_rows)):
             # Create new column, named i, which will be the number of new columns. Can just delete those later. 
             # nan_rows + 2 because you want to start from the second of the pair of NaNs. 
-            d[i] = d.iloc[nan_rows[i]+4:nan_rows[i+2], 1]
+            d[i+2] = d.iloc[nan_rows[i]+4:nan_rows[i+2], 1]
         # print(d)
     return df_tuple
 
