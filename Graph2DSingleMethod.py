@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-data = pd.read_csv("C:\\Users\\kwira\\Downloads\\both holders 1 vs 2")
+data = pd.read_csv("C:\\Users\\kdee2\\Documents\\GitHub\\Quartz-Irradiations-Code\\One Holder 1 vs 2.csv")
 wavelength = data["wavelength"].tolist()
 
 fig, ax = plt.subplots()
