@@ -36,12 +36,6 @@ def data_shift(df_tuple: tuple):
         # Loop through every index. 
         # index_list = d.index.tolist()
         nan_rows = d[d[0].isnull()].index.tolist()
-        """ for index in index_list:
-            # Check if NaN value exists in the wavelength column (0th column) at each index. This will indicate a line break. 
-            # Need to get index of each True value (which indexer goes first?)
-            if d.iloc[index, 0] == 'NaN':
-                nan_rows.append(index)
-                print("NaN detected") """
         print("Og nanrows is", nan_rows)
         print(len(nan_rows))
         # After the loop, get rid of every other item in the list of indices. This is because I just want the index of the first NaN of the NaN pairs. 
@@ -51,8 +45,9 @@ def data_shift(df_tuple: tuple):
         # Loop through numbers in nan_rows, which are the indices of the rows with NaNs, and add three to get the batch name (hopefully this works every time)
         for item in nan_rows:
             col_names.append(d[0][item+3])
+        print("Col names are", col_names)
         # Not sure if -1 is necessary. 
-        for i in range(len(nan_rows)-1):
+        for i in range(len(nan_rows)):
             # Create new column, named i, which will be the number of new columns. Can just delete those later. 
             # nan_rows + 2 because you want to start from the second of the pair of NaNs. 
             d[i] = d.iloc[nan_rows[i]+4:nan_rows[i+2], 1]
