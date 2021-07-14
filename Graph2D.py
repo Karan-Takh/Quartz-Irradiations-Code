@@ -33,14 +33,14 @@ for (columnName, columnData) in data.iteritems():
         continue
     elif columnName == 'standard':
         y = data[f"{columnName}"].tolist()
-        ax.plot(wavelength, y, label=f"{columnName}", color='black')
+        ax.plot(wavelength, y, label=f"{columnName}", color='black', linewidth=0.5)
         minimum.append(min(y))
         maximum.append(max(y))
     else:
         if scan%5 == 0:
             y = data[f"{columnName}"].tolist()
             scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
-            ax.plot(wavelength, y, label=f"{columnName}", color=f"{color[colornum]}")
+            ax.plot(wavelength, y, label=f"{columnName}", color=f"{color[colornum]}", linewidth=0.5)
             minimum.append(min(y))
             maximum.append(max(y))
             colornum = colornum+1 # Changes the color to new color when there is a new batch
@@ -48,7 +48,7 @@ for (columnName, columnData) in data.iteritems():
         else:
             y = data[f"{columnName}"].tolist()
             scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
-            ax.plot(wavelength, y, label=f"{columnName}", color=f"{color[colornum]}")
+            ax.plot(wavelength, y, label=f"{columnName}", color=f"{color[colornum]}", linewidth=0.5)
             minimum.append(min(y))
             maximum.append(max(y))
             scan = scan + 1
@@ -57,15 +57,15 @@ truemin = int(min(minimum)) - 10
 truemax = int(max(maximum)) + 10
 
 #Adds labels to graph
-plt.legend(loc='upper left')
+plt.legend(bbox_to_anchor=(1.05, 1.0), loc='upper left')
 plt.title('Keep Light No Turns')
 plt.xlabel("Wavelength (nm)")
 plt.ylabel("Percent Transmission (%)")
 
 #Sets size of figure
 plt.ylim(truemin,truemax)
-fig = plt.gcf()
-fig.set_size_inches(9, 6)
+# fig = plt.gcf()
+# fig.set_size_inches(9, 6)
 
 # Sets the tick mark intervals
 plt.xticks(np.arange(100, 1100+1, 100))
@@ -75,7 +75,7 @@ xpmt1 = np.full(shape=len(list(range(truemin,truemax))), fill_value=200, dtype=i
 ypmt1 = range(truemin, truemax)
 xpmt2 = np.full(shape=len(list(range(truemin,truemax))), fill_value=600, dtype=int)
 ypmt2 = range(truemin, truemax)
-ax.plot(xpmt1, ypmt1)
-ax.plot(xpmt2, ypmt2)
+ax.plot(xpmt1, ypmt1, color='b', linewidth=2)
+ax.plot(xpmt2, ypmt2, color='b', linewidth=2)
 
 plt.show()
