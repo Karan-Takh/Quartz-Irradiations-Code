@@ -15,8 +15,8 @@ def comma_remover(sheet):
     return abs_df, trans_df
 
 
-y = input(
-    'Enter the name of the data sheet you want to convert. Must be .csv. Please omit file ending (ie, do no type .csv): ')
+# y = input(
+    # 'Enter the name of the data sheet you want to convert. Must be .csv. Please omit file ending (ie, do no type .csv): ')
 
 # Call comma remover function to remove the commas from the first column of the file. 
 pd.set_option("display.max_rows", None, "display.max_columns", None)
@@ -47,15 +47,16 @@ def data_shift(df_tuple: tuple):
             col_names.append(d[0][item+3])
         print("Col names are", col_names)
         # Not sure if -1 is necessary. 
+        print("Sliced column is \n", d.iloc[nan_rows[0]+4:nan_rows[1]+1, 1])
         for i in range(len(nan_rows)-1):
             # Create new column, named i, which will be the number of new columns. Can just delete those later. 
             # nan_rows + 2 because you want to start from the second of the pair of NaNs. 
                 d[i+2] = d.iloc[nan_rows[i]+4:nan_rows[i+1]+1, 1]
-        # print(d)
+         # print(d.iloc[0:5])
     return df_tuple
 
 
-
+y = '210427 Sample 6 Raw Data'
 # Print the first dataframe in the tuple of dataframes created by the data shift function. 
 data_shift(comma_remover(y))
 
