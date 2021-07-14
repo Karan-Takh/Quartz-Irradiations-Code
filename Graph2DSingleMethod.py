@@ -21,11 +21,6 @@ scan = 1
 for (columnName, columnData) in data.iteritems():
     if columnName == 'wavelength':
         continue
-    elif columnName == 'standard':
-        y = data[f"{columnName}"].tolist()
-        ax.plot(wavelength, y, label=f"{columnName}", color='black', linewidth=0.5)
-        minimum.append(min(y))
-        maximum.append(max(y))
     else:
         y = data[f"{columnName}"].tolist()
         scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
