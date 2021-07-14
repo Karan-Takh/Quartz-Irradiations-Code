@@ -40,6 +40,7 @@ def data_shift(df_tuple):
             # Need to get index of each True value (which indexer goes first?)
             if d.iloc[index, 0] == 'NaN':
                 nan_rows.append(index)
+                print("NaN detected")
         # After the loop, get rid of every other item in the list of indices. This is because I just want the index of the first NaN of the NaN pairs. 
         nan_rows = nan_rows[0::2]
         # Loop through numbers in nan_rows, which are the indices of the rows with NaNs, and add three to get the batch name (hopefully this works every time)
@@ -56,7 +57,7 @@ def data_shift(df_tuple):
 
 
 # Print the first dataframe in the tuple of dataframes created by the data shift function. 
-print(data_shift(comma_remover(y)))
+data_shift(comma_remover(y))
 
 
 
