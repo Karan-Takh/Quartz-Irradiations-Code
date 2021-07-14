@@ -31,6 +31,7 @@ pd.set_option("display.max_rows", None, "display.max_columns", None)
 
 def data_shift(df_tuple: tuple):
     # Loop through each dataframe d, absorbance and transmittance
+    print(df_tuple)
     for d in df_tuple:
         col_names = list()
         # Loop through every index. 
