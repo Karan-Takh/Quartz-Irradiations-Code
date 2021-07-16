@@ -23,7 +23,8 @@ fig, ax = plt.subplots()
 
 #################### Creates dictionary of colors in html format ####################
 color = ['#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
-         '#FF0066', '#993300', '#FF3300', '#660033']
+         '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
+         '#993333']
 
 #################### Function for graphing all lines in their respective colors ####################
 colornum = 0
@@ -40,7 +41,7 @@ for (columnName, columnData) in data.iteritems():
         minimum.append(min(y))
         maximum.append(max(y))
     else:
-        if scan%5 == 0:
+        if scan%4 == 0:
             y = data[f"{columnName}"].tolist()
             scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
             ax.plot(wavelength, y, label=f"{columnName}", color=f"{color[colornum]}", linewidth=0.5)
