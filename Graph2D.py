@@ -61,7 +61,7 @@ truemin = int(min(minimum)) - 10
 truemax = int(max(maximum)) + 10
 
 #################### Adds labels to graph ####################
-plt.legend(bbox_to_anchor=(1.05, 1.0), loc='upper left', ncol=2)
+plt.legend(bbox_to_anchor=(1, 1), loc='upper left', ncol=2)
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # plt.title('Both Holders 2')
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -73,9 +73,9 @@ plt.ylabel("Percent Transmission (%)")
 
 #################### Sets size of figure ####################
 plt.ylim(truemin,truemax)
-figManager = plt.get_current_fig_manager()
-figManager.window.showMaximized()
-plt.tight_layout()
+# figManager = plt.get_current_fig_manager()
+# figManager.window.showMaximized()
+# plt.tight_layout()
 
 #################### Sets the tick mark intervals ####################
 plt.xticks(np.arange(100, 1100+1, 100))
