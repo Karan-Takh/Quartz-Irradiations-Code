@@ -12,7 +12,9 @@ def comma_remover(sheet):
     # Absorbance should always be the second column
     abs_df = sheetdf.iloc[:, 0:2]
     # Transmittance will always be the third column. 
-    trans_df = sheetdf.iloc[:, 1:3]
+    trans_df = sheetdf.drop(columns=[1], axis=1)
+    trans_df.rename(columns = {2: 1}, inplace=True)
+    # print(trans_df.head())
     return abs_df, trans_df
 
 
@@ -39,7 +41,7 @@ def data_shift(df_tuple: tuple):
         # Loop through every index. 
         # index_list = d.index.tolist()
         nan_rows = d[d[0].isnull()].index.tolist()
-        print("Og nanrows is", nan_rows)
+        # print("Og nanrows is", nan_rows)
         # print(len(nan_rows))
         # After the loop, get rid of every other item in the list of indices. This is because I just want the index of the first NaN of the NaN pairs. 
         nan_rows = nan_rows[0::2]
@@ -58,9 +60,9 @@ def data_shift(df_tuple: tuple):
                 })
             # original = d
             d = pd.concat([d, additional], axis=1)
-            dfs_list.append(d)
+        dfs_list.append(d)
     # Use head function to see how top of dataframe is looking. 
-    print(dfs_list[0].head())
+    print(dfs_list[1].head())
     return dfs_list
 
 
@@ -68,7 +70,7 @@ y = '210427 Sample 6 Raw Data'
 # Print the first dataframe in the tuple of dataframes created by the data shift function. 
 data_shift(comma_remover(y))
 
-
+# comma_remover(y)
 
 
 # 210427 Sample 6 Raw Data
