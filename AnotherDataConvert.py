@@ -54,7 +54,7 @@ def data_shift(df_tuple: tuple):
             # nan_rows + 2 because you want to start from the second of the pair of NaNs. 
             # Convert sliced column from series to a list. 
             additional = pd.DataFrame({
-                d[i+2] : d.iloc[nan_rows[i]+4:nan_rows[i+1], 1].tolist()
+                i+2 : d.iloc[nan_rows[i]+4:nan_rows[i+1], 1].tolist()
                 })
             original = d
             new = pd.concat([original, additional], axis=1)
