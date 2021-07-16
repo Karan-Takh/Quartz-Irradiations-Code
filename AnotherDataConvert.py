@@ -62,15 +62,22 @@ def data_shift(df_tuple: tuple):
             d = pd.concat([d, additional], axis=1)
         dfs_list.append(d)
     # Use head function to see how top of dataframe is looking. 
-    print(dfs_list[1].head())
+    # print(dfs_list[1].head())
     return dfs_list
 
 
 y = '210427 Sample 6 Raw Data'
 # Print the first dataframe in the tuple of dataframes created by the data shift function. 
-data_shift(comma_remover(y))
+# data_shift(comma_remover(y))
 
-# comma_remover(y)
+
+# --------- Finishing touches ----------
+for data in data_shift(comma_remover(y)):
+    data.drop(index=[0,1,2], columns=[0,1])
+    print(data.head())
+
+
+
 
 
 # 210427 Sample 6 Raw Data
