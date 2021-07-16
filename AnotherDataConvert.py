@@ -31,7 +31,7 @@ pd.set_option("display.max_rows", None, "display.max_columns", None)
 
 def data_shift(df_tuple: tuple):
     # Loop through each dataframe d, absorbance and transmittance
-    print(df_tuple)
+    # print(df_tuple)
     for d in df_tuple:
         col_names = list()
         # Loop through every index. 
@@ -45,15 +45,13 @@ def data_shift(df_tuple: tuple):
         print("Nanrows after removing every other is", nan_rows)
         # Loop through numbers in nan_rows, which are the indices of the rows with NaNs, and add three to get the batch name (hopefully this works every time)
         for item in nan_rows:
-            col_names.append(d[0][item+3])
-        print("Col names are", col_names)
-        # Not sure if -1 is necessary. 
-        print("Sliced column is \n", d.iloc[nan_rows[0]+4:nan_rows[1]+1, 1])
+            col_names.append(d[0][item+3]) 
+        print("Sliced column is \n", d.iloc[nan_rows[1]+4:nan_rows[2], 1])
         for i in range(len(nan_rows)-1):
             # Create new column, named i, which will be the number of new columns. Can just delete those later. 
             # nan_rows + 2 because you want to start from the second of the pair of NaNs. 
-                d[i+2] = d.iloc[nan_rows[i]+4:nan_rows[i+1]+1, 1]
-         # print(d.iloc[0:5])
+            d[i+2] = d.iloc[nan_rows[i]+4:nan_rows[i+1], 1]
+        print(d)
     return df_tuple
 
 
