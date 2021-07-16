@@ -1,3 +1,4 @@
+from numpy import add
 import pandas as pd
 
 # Create function to remove commas from data values in csv file and create dataframes for the absorbance and transmittance values separately.  
@@ -30,6 +31,7 @@ pd.set_option("display.max_rows", None, "display.max_columns", None)
 
 
 def data_shift(df_tuple: tuple):
+    dfs_list = list()
     # Loop through each dataframe d, absorbance and transmittance
     # print(df_tuple)
     for d in df_tuple:
@@ -46,13 +48,20 @@ def data_shift(df_tuple: tuple):
         # Loop through numbers in nan_rows, which are the indices of the rows with NaNs, and add three to get the batch name (hopefully this works every time)
         for item in nan_rows:
             col_names.append(d[0][item+3]) 
-        print("Sliced column is \n", d.iloc[nan_rows[1]+4:nan_rows[2], 1])
+        print("First sliced column is \n", d.iloc[nan_rows[0]+4:nan_rows[1], 1].tolist())
         for i in range(len(nan_rows)-1):
             # Create new column, named i, which will be the number of new columns. Can just delete those later. 
             # nan_rows + 2 because you want to start from the second of the pair of NaNs. 
-            d[i+2] = d.iloc[nan_rows[i]+4:nan_rows[i+1], 1]
-        print(d)
-    return df_tuple
+            # Convert sliced column from series to a list. 
+            additional = pd.DataFrame({
+                d[i+2] : d.iloc[nan_rows[i]+4:nan_rows[i+1], 1].tolist()
+                })
+            original = d
+            new = pd.concat([original, additional], axis=1)
+            # Use head function to see how top of dataframe is looking. 
+            print(new.head())
+            dfs_list.append(new)
+    return dfs_list
 
 
 y = '210427 Sample 6 Raw Data'
