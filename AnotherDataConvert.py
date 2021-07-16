@@ -60,10 +60,10 @@ def data_shift(df_tuple: tuple):
                 })
             # original = d
             d = pd.concat([d, additional], axis=1)
-        d.drop(index=[0,1,2], columns=[0,1])
+        # d.drop(index=0, inplace=True)
         dfs_list.append(d)
     # Use head function to see how top of dataframe is looking. 
-    print(dfs_list[1].head())
+    # print(dfs_list[1].head())
     return dfs_list
 
 
@@ -72,11 +72,32 @@ y = '210427 Sample 6 Raw Data'
 data_shift(comma_remover(y))
 
 
+
 # --------- Finishing touches ----------
+absorbance = data_shift(comma_remover(y))[0]
+transmittance = data_shift(comma_remover(y))[1]
+
+for column in absorbance.columns():
+            col_list = absorbance[column].tolist()
+            col_list.remove("NaN")
+            col_list.remove("Abs")
+            absorbance[column] = col_list
+
+for column in transmittance.columns():
+            col_list = transmittance[column].tolist()
+            col_list.remove("NaN")
+            col_list.remove("%T")
+            transmittance[column] = col_list
+
+print(absorbance.head())
+
+
+
+
 """ for data in data_shift(comma_remover(y)):
     data.drop(index=[0,1,2], columns=[0,1])
-    print(data.head()) """
-
+    print(data.head()) 
+ """
 
 
 
