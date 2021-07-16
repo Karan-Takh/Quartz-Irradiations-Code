@@ -40,15 +40,15 @@ def data_shift(df_tuple: tuple):
         # index_list = d.index.tolist()
         nan_rows = d[d[0].isnull()].index.tolist()
         print("Og nanrows is", nan_rows)
-        print(len(nan_rows))
+        # print(len(nan_rows))
         # After the loop, get rid of every other item in the list of indices. This is because I just want the index of the first NaN of the NaN pairs. 
         nan_rows = nan_rows[0::2]
-        print(len(nan_rows))
-        print("Nanrows after removing every other is", nan_rows)
+        # print(len(nan_rows))
+        # print("Nanrows after removing every other is", nan_rows)
         # Loop through numbers in nan_rows, which are the indices of the rows with NaNs, and add three to get the batch name (hopefully this works every time)
         for item in nan_rows:
             col_names.append(d[0][item+3]) 
-        print("First sliced column is \n", d.iloc[nan_rows[0]+4:nan_rows[1], 1].tolist())
+        # print("First sliced column is \n", d.iloc[nan_rows[0]+4:nan_rows[1], 1].tolist())
         for i in range(len(nan_rows)-1):
             # Create new column, named i, which will be the number of new columns. Can just delete those later. 
             # nan_rows + 2 because you want to start from the second of the pair of NaNs. 
@@ -56,11 +56,11 @@ def data_shift(df_tuple: tuple):
             additional = pd.DataFrame({
                 i+2 : d.iloc[nan_rows[i]+4:nan_rows[i+1], 1].tolist()
                 })
-            original = d
-            new = pd.concat([original, additional], axis=1)
-            # Use head function to see how top of dataframe is looking. 
-            print(new.head())
-            dfs_list.append(new)
+            # original = d
+            d = pd.concat([d, additional], axis=1)
+            dfs_list.append(d)
+    # Use head function to see how top of dataframe is looking. 
+    print(dfs_list[0].head())
     return dfs_list
 
 
