@@ -1,4 +1,4 @@
-from numpy import add
+from numpy import NaN, add
 import pandas as pd
 
 # Create function to remove commas from data values in csv file and create dataframes for the absorbance and transmittance values separately.  
@@ -60,18 +60,22 @@ def data_shift(df_tuple: tuple):
                 })
             # original = d
             d = pd.concat([d, additional], axis=1)
+        # Drop the first row, which has no useful values. 
         d.drop(index=0, inplace=True)
+
         d[0] = d[0].drop(labels=[1,2])
+        d.drop(d.iloc[1][0])
+        # d.drop(d.index[d[0] == 'NaN'], inplace=True)
         d[1] = d[1].drop(labels=[1,2])
-        for c in d.columns.tolist():
-            d[c] = d[c].dropna()
+        # for c in d.columns.tolist():
+          #  d[c] = d[c].dropna()
         dfs_list.append(d)
     return dfs_list
 
 
 y = '210427 Sample 6 Raw Data'
 # Print the first dataframe in the tuple of dataframes created by the data shift function. 
-data_shift(comma_remover(y))
+# data_shift(comma_remover(y))
 
 
 
@@ -84,7 +88,9 @@ transmittance = data_shift(comma_remover(y))[1]
 abs_col_list = absorbance.columns.tolist()
 tra_col_list = transmittance.columns.tolist()
 
-toremove = ["NaN"]
+
+
+""" toremove = ["NaN"]
 
 
 for c in abs_col_list:
@@ -109,7 +115,7 @@ for c in tra_col_list:
     # Replace the c column with filtered list, which will have the values without the unwanted stuff.
     transmittance[c] = filtered_list
             
-
+  """
 
 """ absorbance[c].tolist().remove("NaN")
         absorbance[c].tolist().remove("Abs")
