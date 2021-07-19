@@ -60,10 +60,12 @@ def data_shift(df_tuple: tuple):
                 })
             # original = d
             d = pd.concat([d, additional], axis=1)
-        # d.drop(index=0, inplace=True)
+        d.drop(index=0, inplace=True)
+        d[0] = d[0].drop(labels=[1,2])
+        d[1] = d[1].drop(labels=[1,2])
+        for c in d.columns.tolist():
+            d[c] = d[c].dropna()
         dfs_list.append(d)
-    # Use head function to see how top of dataframe is looking. 
-    # print(dfs_list[1].head())
     return dfs_list
 
 
@@ -77,20 +79,47 @@ data_shift(comma_remover(y))
 absorbance = data_shift(comma_remover(y))[0]
 transmittance = data_shift(comma_remover(y))[1]
 
-
+# print(absorbance.head())
 # Make lists of absorbance and transmittance lists
 abs_col_list = absorbance.columns.tolist()
 tra_col_list = transmittance.columns.tolist()
 
+toremove = ["NaN"]
+
+
 for c in abs_col_list:
-    absorbance[c].remove("NaN")
-    absorbance[c].remove("Abs")
+    # Define empty list for every iteration through the column names. 
+    filtered_list = []
+    # Iterate through each value in each column. Must change column from series to list to accomplish this. 
+    for e in absorbance[c].tolist():
+        # Check if e is not in the list of values to remove for the absorbance dataframe. If it isn't, append it to the filtered list. 
+        if e not in toremove:
+            filtered_list.append(e)
+    # Replace the c column with filtered list, which will have the values without the unwanted stuff.
+    absorbance[c] = filtered_list
 
 for c in tra_col_list:
-    transmittance[c].remove("NaN")
-    transmittance[c].remove("Abs")
+    # Define empty list for every iteration through the column names. 
+    filtered_list = []
+    # Iterate through each value in each column. Must change column from series to list to accomplish this. 
+    for e in transmittance[c].tolist():
+        # Check if e is not in the list of values to remove for the transmittance dataframe. If it isn't, append it to the filtered list. 
+        if e not in toremove:
+            filtered_list.append(e)
+    # Replace the c column with filtered list, which will have the values without the unwanted stuff.
+    transmittance[c] = filtered_list
+            
 
-    
+
+""" absorbance[c].tolist().remove("NaN")
+        absorbance[c].tolist().remove("Abs")
+ """
+
+""" for c in tra_col_list:
+    transmittance[c].tolist().remove("NaN")
+    transmittance[c].tolist().remove("%T")
+    # transmittance[c] = 
+     """
 print(absorbance.head())
 
 
