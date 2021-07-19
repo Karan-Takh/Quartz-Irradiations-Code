@@ -33,22 +33,8 @@ scan = 1
 minimum = []
 maximum = []
 namelist = []
-namenew = []
 namedone = []
 nameid = 0
-
-for (columnName, columnData) in data.iteritems():
-    if columnName == 'wavelength':
-        continue
-    if columnName == 'standard':
-        continue
-    elif columnName == 'blank':
-        continue
-    else:
-        name = list(columnName)
-        namelist.append(name)
-
-# print(namelist)
 
 def convert(s):
     # initialization of string to ""
@@ -59,10 +45,17 @@ def convert(s):
         # return string
     return new
 
-for item in namelist:
-    name = namelist[nameid][:-2]
-    namenew.append(convert(name))
-    nameid = nameid + 1
+for (columnName, columnData) in data.iteritems():
+    if columnName == 'wavelength':
+        continue
+    if columnName == 'standard':
+        continue
+    elif columnName == 'blank':
+        continue
+    else:
+        name = list(columnName)
+        name = name[:-2]
+        namelist.append(convert(name))
 
 nameid = 0
 
@@ -82,7 +75,7 @@ for (columnName, columnData) in data.iteritems():
         minimum.append(min(y))
         maximum.append(max(y))
     else:
-        if namenew[nameid] in namedone:
+        if namelist[nameid] in namedone:
             y = data[f"{columnName}"].tolist()
             scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
             ax.plot3D(scanlist, wavelength, y, color=f"{color[colornum]}")
@@ -91,10 +84,10 @@ for (columnName, columnData) in data.iteritems():
             scan = scan + 1
         else:
             colornum = colornum+1 # Changes the color to new color when there is a new batch
-            namedone.append(namenew[nameid])
+            namedone.append(namelist[nameid])
             y = data[f"{columnName}"].tolist()
             scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
-            ax.plot3D(scanlist, wavelength, y, label=f"{namenew[nameid]}", color=f"{color[colornum]}")
+            ax.plot3D(scanlist, wavelength, y, label=f"{namelist[nameid]}", color=f"{color[colornum]}")
             minimum.append(min(y))
             maximum.append(max(y))
             scan = scan+1
