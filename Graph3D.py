@@ -4,16 +4,16 @@ from mpl_toolkits.mplot3d.axes3d import Axes3D
 import numpy as np
 
 #######################################################
-# file = input('Enter the csv file with .csv: ')
-# name = input('Enter the desired name of the graph: ')
+file = input('Enter the csv file with .csv: ')
+name = input('Enter the desired name of the graph: ')
 #######################################################
 
 #################### Converts csv to dataframe ####################
 #######################################################
-# data = pd.read_csv(file)
+data = pd.read_csv(file)
 #######################################################
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-data = pd.read_csv("C:\\Users\\kwira\\Downloads\\cleaned Sample 6 Measurements Extras Deleted - cleaned Sample 6 Measurements Extras Deleted.csv")
+# data = pd.read_csv("C:\\Users\\kwira\\Downloads\\cleaned Sample 6 Measurements Extras Deleted - cleaned Sample 6 Measurements Extras Deleted.csv")
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 #################### Adds wavelength values to list for graphing ####################
@@ -99,10 +99,10 @@ newmax = int(max(maximum)) + 10
 #################### Adds labels to graph ####################
 plt.legend(bbox_to_anchor=(1.1, 0.8), loc='upper left', ncol=2)
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-plt.title('S6')
+# plt.title('S6')
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #######################################################
-# plt.title(name)
+plt.title(name)
 #######################################################
 ax.set_xlabel("Scan Number", size=15)
 ax.set_ylabel("Wavelength (nm)", size=15)
@@ -111,7 +111,6 @@ ax.set_zlabel("Percent Transmission (%)", size=15)
 #################### Sets size of figure ####################
 ax.set_xlim(0,scan)
 plt.tight_layout()
-plt.savefig('test.png', bbox_inches='tight')
 mng = plt.get_current_fig_manager()
 mng.window.state("zoomed")
 
