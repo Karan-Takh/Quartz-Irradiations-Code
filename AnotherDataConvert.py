@@ -77,18 +77,20 @@ data_shift(comma_remover(y))
 absorbance = data_shift(comma_remover(y))[0]
 transmittance = data_shift(comma_remover(y))[1]
 
-for column in absorbance.columns():
-            col_list = absorbance[column].tolist()
-            col_list.remove("NaN")
-            col_list.remove("Abs")
-            absorbance[column] = col_list
 
-for column in transmittance.columns():
-            col_list = transmittance[column].tolist()
-            col_list.remove("NaN")
-            col_list.remove("%T")
-            transmittance[column] = col_list
+# Make lists of absorbance and transmittance lists
+abs_col_list = absorbance.columns.tolist()
+tra_col_list = transmittance.columns.tolist()
 
+for c in abs_col_list:
+    absorbance[c].remove("NaN")
+    absorbance[c].remove("Abs")
+
+for c in tra_col_list:
+    transmittance[c].remove("NaN")
+    transmittance[c].remove("Abs")
+
+    
 print(absorbance.head())
 
 
