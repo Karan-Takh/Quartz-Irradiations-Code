@@ -4,16 +4,16 @@ from mpl_toolkits.mplot3d.axes3d import Axes3D
 import numpy as np
 
 #######################################################
-file = input('Enter the csv file with .csv: ')
-name = input('Enter the desired name of the graph: ')
+# file = input('Enter the csv file with .csv: ')
+# name = input('Enter the desired name of the graph: ')
 #######################################################
 
 #################### Converts csv to dataframe ####################
 #######################################################
-data = pd.read_csv(file)
+# data = pd.read_csv(file)
 #######################################################
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# data = pd.read_csv("C:\\Users\\kwira\\Downloads\\Day_1.csv")
+data = pd.read_csv("C:\\Users\\kwira\\Downloads\\cleaned Sample 6 Measurements Extras Deleted - cleaned Sample 6 Measurements Extras Deleted.csv")
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 #################### Adds wavelength values to list for graphing ####################
@@ -28,10 +28,43 @@ color = ['#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0
          '#993333']
 
 #################### Function for graphing all lines in their respective colors ####################
-colornum = 0
+colornum = -1
 scan = 1
 minimum = []
 maximum = []
+namelist = []
+namenew = []
+namedone = []
+nameid = 0
+
+for (columnName, columnData) in data.iteritems():
+    if columnName == 'wavelength':
+        continue
+    if columnName == 'standard':
+        continue
+    elif columnName == 'blank':
+        continue
+    else:
+        name = list(columnName)
+        namelist.append(name)
+
+# print(namelist)
+
+def convert(s):
+    # initialization of string to ""
+    new = ""
+    # traverse in the string
+    for x in s:
+        new += x
+        # return string
+    return new
+
+for item in namelist:
+    name = namelist[nameid][:-2]
+    namenew.append(convert(name))
+    nameid = nameid + 1
+
+nameid = 0
 
 for (columnName, columnData) in data.iteritems():
     if columnName == 'wavelength':
@@ -42,43 +75,52 @@ for (columnName, columnData) in data.iteritems():
         ax.plot3D(scanlist, wavelength, y, label=f"{columnName}", color='black')
         minimum.append(min(y))
         maximum.append(max(y))
+    elif columnName == 'blank':
+        y = data[f"{columnName}"].tolist()
+        scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int) # Makes array full of same scan number
+        ax.plot3D(scanlist, wavelength, y, label=f"{columnName}", color='#C00000')
+        minimum.append(min(y))
+        maximum.append(max(y))
     else:
-        if scan%4 == 0:
+        if namenew[nameid] in namedone:
             y = data[f"{columnName}"].tolist()
             scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
-            ax.plot3D(scanlist, wavelength, y, label=f"{columnName}", color=f"{color[colornum]}")
-            minimum.append(min(y))
-            maximum.append(max(y))
-            colornum = colornum+1 # Changes the color to new color when there is a new batch
-            scan = scan+1
-        else:
-            y = data[f"{columnName}"].tolist()
-            scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
-            ax.plot3D(scanlist, wavelength, y, label=f"{columnName}", color=f"{color[colornum]}")
+            ax.plot3D(scanlist, wavelength, y, color=f"{color[colornum]}")
             minimum.append(min(y))
             maximum.append(max(y))
             scan = scan + 1
+        else:
+            colornum = colornum+1 # Changes the color to new color when there is a new batch
+            namedone.append(namenew[nameid])
+            y = data[f"{columnName}"].tolist()
+            scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
+            ax.plot3D(scanlist, wavelength, y, label=f"{namenew[nameid]}", color=f"{color[colornum]}")
+            minimum.append(min(y))
+            maximum.append(max(y))
+            scan = scan+1
+        nameid = nameid + 1
 
 newmin = int(min(minimum)) - 10
 newmax = int(max(maximum)) + 10
 
 #################### Adds labels to graph ####################
-plt.legend(bbox_to_anchor=(1.1, 1.0), loc='upper left', ncol=2)
+plt.legend(bbox_to_anchor=(1.1, 0.8), loc='upper left', ncol=2)
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# plt.title('Day 1')
+plt.title('S6')
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #######################################################
-plt.title(name)
+# plt.title(name)
 #######################################################
-ax.set_xlabel("Scan Number")
-ax.set_ylabel("Wavelength (nm)")
-ax.set_zlabel("Percent Transmission (%)")
+ax.set_xlabel("Scan Number", size=15)
+ax.set_ylabel("Wavelength (nm)", size=15)
+ax.set_zlabel("Percent Transmission (%)", size=15)
 
 #################### Sets size of figure ####################
 ax.set_xlim(0,scan)
-# figManager = plt.get_current_fig_manager()
-# figManager.window.showMaximized()
 plt.tight_layout()
+plt.savefig('test.png', bbox_inches='tight')
+mng = plt.get_current_fig_manager()
+mng.window.state("zoomed")
 
 #################### Sets the tick mark intervals ####################
 plt.autoscale(False)
@@ -89,18 +131,18 @@ ax.set_zticks(np.arange(newmin, newmax+1, 10))
 ax.zaxis.set_tick_params(labelsize=1)
 for t in ax.zaxis.get_major_ticks(): t.label.set_fontsize(10)
 
-# x_scale=4
-# y_scale=4.5
-# z_scale=4
-#
-# scale=np.diag([x_scale, y_scale, z_scale, 1.0])
-# scale=scale*(1.0/scale.max())
-# scale[3,3]=1.0
-#
-# def short_proj():
-#   return np.dot(Axes3D.get_proj(ax), scale)
-#
-# ax.get_proj=short_proj
+x_scale=4
+y_scale=4.5
+z_scale=4
+
+scale=np.diag([x_scale, y_scale, z_scale, 1.0])
+scale=scale*(1.0/scale.max())
+scale[3,3]=1.0
+
+def short_proj():
+  return np.dot(Axes3D.get_proj(ax), scale)
+
+ax.get_proj=short_proj
 
 #################### Creates rectangular prism to show the PMT sensitive region ####################
 zpmt = list(range(newmin, newmax))
