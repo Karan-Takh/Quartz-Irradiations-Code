@@ -60,15 +60,18 @@ def data_shift(df_tuple: tuple):
                 })
             # original = d
             d = pd.concat([d, additional], axis=1)
+        # Drop the first three labels of the first 2 columns, and then shift the columns up by 2 rows.
+        d[0] = d[0].drop(labels=[0, 1])
+        d[0] = d[0].shift(-2)
+        d[1] = d[1].drop(labels=[0, 1])
+        d[1] = d[1].shift(-2)
+        # Remove all of the dataframe after the first iteration of the 190-1100nm range after the data is shifted. 
+        d = d.iloc[:nan_rows[0]]
+        # Remove rows with missing values. 
+        d = d.dropna()
         # Drop the first row, which has no useful values. 
         d.drop(index=0, inplace=True)
 
-        d[0] = d[0].drop(labels=[1,2])
-        d.drop(d.iloc[1][0])
-        # d.drop(d.index[d[0] == 'NaN'], inplace=True)
-        d[1] = d[1].drop(labels=[1,2])
-        # for c in d.columns.tolist():
-          #  d[c] = d[c].dropna()
         dfs_list.append(d)
     return dfs_list
 
