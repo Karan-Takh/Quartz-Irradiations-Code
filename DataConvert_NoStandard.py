@@ -16,7 +16,7 @@ hits = []
 results = []
 hits2 = []
 
-# Create function to remove commas from data values in csv file
+# Create function to remove commas from data values in csv file. This function was created seperately from the much of the rest of the code. 
 def comma_remover(sheet):
     # read the inputted data sheet into a pandas dataframe
     sheetdf = pd.read_csv(sheet+'.csv')
@@ -80,7 +80,8 @@ def Input(filename):
 
 y = input(
     'Enter the name of the data sheet you want to convert. Must be .csv. Please omit file ending (ie, do no type .csv): ')
-# Call comma remover function
+
+# Call comma remover function to remove the commas from the first column of the file. 
 comma_remover(y)
 
 
@@ -90,16 +91,21 @@ fileNames.remove(-999)
 
 # Trash labels are parts of the title that aren't used in the code
 fileName = fileNames[0]
+# Generates list 'name' made up of each word of the file name.
 name = fileName.split(' ')
 date = name[0]
 trash1 = name[1]
 Samplenum = name[2]
 trash2 = name[3]
 trash3 = name[4]
+# Lamb is the wavelengths, read into the numpy array.
 lamb = np.genfromtxt(str(y) + '.csv', delimiter=',', skip_header=3, usecols=np.arange(0, 1))
+# Trans is the transmittivities, read into a separate array. 
 Trans = np.genfromtxt(str(y) + '.csv', delimiter=',', skip_header=3, usecols=np.arange(2, 3))
 NaNFinder(Trans, 'nan')
+# The range of wavelengths is usually 190 - 1100. Probably won't work for other ranges we decide to use. However, for the irradiations we'll be sticking to that.
 lamb = lamb[0:911]
+print("lamb is \n", lamb) 
 Range = 911
 
 amount = results[1] / 5
@@ -138,9 +144,9 @@ for i in range(0, int(amount)):
     data.append(obj['l' + str(i)])
 
 # writes new data sheet
-x = input('Please input the name you would want to save the new file as. Please include file noter: ')
+x = input('Please input the name you would want to save the new file as. ')
 export_data = zip_longest(*data, fillvalue='')
-with open(str(x), 'w+', encoding="ISO-8859-1", newline='') as file:
+with open(str(x)+".csv", 'w+', encoding="ISO-8859-1", newline='') as file:
     writer = csv.writer(file)
     writer.writerow(fieldnames)
     writer.writerows(export_data)
