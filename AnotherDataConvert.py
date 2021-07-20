@@ -86,12 +86,12 @@ def data_shift(df_tuple: tuple):
     return dfs_list
 
 
-y = '210427 Sample 6 Raw Data'
-# Print the first dataframe in the tuple of dataframes created by the data shift function. 
-# data_shift(comma_remover(y))
+# Get inputs for file to be opened and the names of the new absorbance and transmittance files. 
+y = input(
+     'Enter the name of the data sheet you want to convert. Must be .csv. Please omit file ending (ie, do no type .csv): ')
 
-
-
+x = input('Name of new absorbance file: ')
+z = input('Name of new transmittance file: ')
 # --------- Finishing touches ----------
 absorbance = data_shift(comma_remover(y))[0]
 transmittance = data_shift(comma_remover(y))[1]
@@ -100,16 +100,14 @@ transmittance = data_shift(comma_remover(y))[1]
 
 
 
-print(absorbance.head())
+# print(absorbance.head())
 
 
+absorbance.to_csv(path_or_buf = x + ".csv")
 
-
-
+transmittance.to_csv(path_or_buf = z + ".csv")
 
 
 
 
 # 210427 Sample 6 Raw Data
-# y = input(
-    # 'Enter the name of the data sheet you want to convert. Must be .csv. Please omit file ending (ie, do no type .csv): ')
