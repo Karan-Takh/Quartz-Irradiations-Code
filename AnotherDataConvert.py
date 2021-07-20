@@ -48,17 +48,24 @@ def data_shift(df_tuple: tuple):
         # print(len(nan_rows))
         # print("Nanrows after removing every other is", nan_rows)
         # Loop through numbers in nan_rows, which are the indices of the rows with NaNs, and add three to get the batch name (hopefully this works every time)
+        col_names.append(d[0][1])
         for item in nan_rows:
             col_names.append(d[0][item+3]) 
         # print("First sliced column is \n", d.iloc[nan_rows[0]+4:nan_rows[1], 1].tolist())
-        for i in range(len(nan_rows)-1):
+        for i in range(len(nan_rows)):
             # Create new column, named i, which will be the number of new columns. Can just delete those later. 
             # nan_rows + 2 because you want to start from the second of the pair of NaNs. 
             # Convert sliced column from series to a list. 
-            additional = pd.DataFrame({
-                i+2 : d.iloc[nan_rows[i]+4:nan_rows[i+1], 1].tolist()
+            if i != len(nan_rows):
+                additional = pd.DataFrame({
+                    i+2 : d.iloc[nan_rows[i]+4:nan_rows[i+1], 1].tolist()
+                    })
+            # If this is the last iteration of the for loop, go from the last item in nan-rows 
+            else:
+                additional = pd.DataFrame({
+                    i+2: d.iloc[nan_rows[i]+4:, 1].tolist()
                 })
-            # original = d
+
             d = pd.concat([d, additional], axis=1)
         # Drop the first three labels of the first 2 columns, and then shift the columns up by 2 rows.
         d[0] = d[0].drop(labels=[0, 1])
@@ -71,7 +78,12 @@ def data_shift(df_tuple: tuple):
         d = d.dropna()
         # Drop the first row, which has no useful values. 
         d.drop(index=0, inplace=True)
-
+        # Rename first column as wavelength.
+        d = d.rename(columns={0 : "Wavelength"})
+        # Set index as wavelength column.
+        d = d.set_index("Wavelength")
+        # Set the column names stored in the col name list
+        d.columns = col_names
         dfs_list.append(d)
     return dfs_list
 
@@ -93,51 +105,13 @@ tra_col_list = transmittance.columns.tolist()
 
 
 
-""" toremove = ["NaN"]
 
-
-for c in abs_col_list:
-    # Define empty list for every iteration through the column names. 
-    filtered_list = []
-    # Iterate through each value in each column. Must change column from series to list to accomplish this. 
-    for e in absorbance[c].tolist():
-        # Check if e is not in the list of values to remove for the absorbance dataframe. If it isn't, append it to the filtered list. 
-        if e not in toremove:
-            filtered_list.append(e)
-    # Replace the c column with filtered list, which will have the values without the unwanted stuff.
-    absorbance[c] = filtered_list
-
-for c in tra_col_list:
-    # Define empty list for every iteration through the column names. 
-    filtered_list = []
-    # Iterate through each value in each column. Must change column from series to list to accomplish this. 
-    for e in transmittance[c].tolist():
-        # Check if e is not in the list of values to remove for the transmittance dataframe. If it isn't, append it to the filtered list. 
-        if e not in toremove:
-            filtered_list.append(e)
-    # Replace the c column with filtered list, which will have the values without the unwanted stuff.
-    transmittance[c] = filtered_list
-            
-  """
-
-""" absorbance[c].tolist().remove("NaN")
-        absorbance[c].tolist().remove("Abs")
- """
-
-""" for c in tra_col_list:
-    transmittance[c].tolist().remove("NaN")
-    transmittance[c].tolist().remove("%T")
-    # transmittance[c] = 
-     """
 print(absorbance.head())
 
 
 
 
-""" for data in data_shift(comma_remover(y)):
-    data.drop(index=[0,1,2], columns=[0,1])
-    print(data.head()) 
- """
+
 
 
 
