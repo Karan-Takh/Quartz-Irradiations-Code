@@ -70,9 +70,9 @@ def data_shift(df_tuple: tuple):
         # Drop the first row, which has no useful values. 
         d.drop(index=0, inplace=True)
         # Rename first column as wavelength.
-        d = d.rename(columns={0 : "Wavelength"})
+        d = d.rename(columns={0 : "wavelength"})
         # Set index as wavelength column.
-        d = d.set_index("Wavelength")
+        d = d.set_index("wavelength")
         # Set the column names stored in the col name list
         d.columns = col_names
         dfs_list.append(d)
@@ -83,10 +83,13 @@ def data_shift(df_tuple: tuple):
 y = input(
      'Enter the name of the data sheet you want to convert. Must be .csv. Please omit file ending (ie, do no type .csv): ')
 
+
+
 x = input('Name of new absorbance file: ')
 z = input('Name of new transmittance file: ')
 
-
+abs_title = input("Title of absorbance plot: ")
+tra_title = input("Title of transmittance plot: ")
 
 # --------- Finishing touches ----------
 # Name the absorbance and transmittance dataframes accordingly
