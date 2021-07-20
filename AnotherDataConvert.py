@@ -7,7 +7,6 @@ def comma_remover(sheet):
     sheetdf = pd.read_csv(sheet+'.csv', header=None)
     # create a list of the column names and remove all the commas in the data values in the first column. --- the list may actually not be necessary.
     sheetdf[0] = sheetdf[0].str.replace(',', '')
-
     # Create two new dataframes, one for absorbance and one for transmittance. Set the index as the first column, wavelength, for both.
     # Absorbance should always be the second column
     abs_df = sheetdf.iloc[:, 0:2]
@@ -18,8 +17,7 @@ def comma_remover(sheet):
     return abs_df, trans_df
 
 
-# y = input(
-    # 'Enter the name of the data sheet you want to convert. Must be .csv. Please omit file ending (ie, do no type .csv): ')
+
 
 # Call comma remover function to remove the commas from the first column of the file. 
 pd.set_option("display.max_rows", None, "display.max_columns", None)
@@ -56,7 +54,7 @@ def data_shift(df_tuple: tuple):
             # Create new column, named i, which will be the number of new columns. Can just delete those later. 
             # nan_rows + 2 because you want to start from the second of the pair of NaNs. 
             # Convert sliced column from series to a list. 
-            if i != len(nan_rows):
+            if nan_rows[i] != nan_rows[-1]:
                 additional = pd.DataFrame({
                     i+2 : d.iloc[nan_rows[i]+4:nan_rows[i+1], 1].tolist()
                     })
@@ -65,7 +63,7 @@ def data_shift(df_tuple: tuple):
                 additional = pd.DataFrame({
                     i+2: d.iloc[nan_rows[i]+4:, 1].tolist()
                 })
-
+            # Add the additional column to the dataframe. 
             d = pd.concat([d, additional], axis=1)
         # Drop the first three labels of the first 2 columns, and then shift the columns up by 2 rows.
         d[0] = d[0].drop(labels=[0, 1])
@@ -98,10 +96,6 @@ y = '210427 Sample 6 Raw Data'
 absorbance = data_shift(comma_remover(y))[0]
 transmittance = data_shift(comma_remover(y))[1]
 
-# print(absorbance.head())
-# Make lists of absorbance and transmittance lists
-abs_col_list = absorbance.columns.tolist()
-tra_col_list = transmittance.columns.tolist()
 
 
 
@@ -117,3 +111,5 @@ print(absorbance.head())
 
 
 # 210427 Sample 6 Raw Data
+# y = input(
+    # 'Enter the name of the data sheet you want to convert. Must be .csv. Please omit file ending (ie, do no type .csv): ')
