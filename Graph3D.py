@@ -99,7 +99,7 @@ newmax = int(max(maximum)) + 10
 #################### Adds labels to graph ####################
 plt.legend(bbox_to_anchor=(1.1, 0.8), loc='upper left', ncol=2)
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# plt.title('S6')
+# plt.title('Sample 6 Day 1')
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #######################################################
 plt.title(name)

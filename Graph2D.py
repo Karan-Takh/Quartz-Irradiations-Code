@@ -3,16 +3,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #######################################################
-file = input('Enter the csv file with .csv: ')
-name = input('Enter the desired name of the graph: ')
+# file = input('Enter the csv file with .csv: ')
+# name = input('Enter the desired name of the graph: ')
 #######################################################
 
 #################### Converts csv to dataframe ####################
 #######################################################
-data = pd.read_csv(file)
+# data = pd.read_csv(file)
 #######################################################
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# data = pd.read_csv("C:\\Users\\kwira\\Downloads\\cleaned Sample 6 Measurements Extras Deleted - cleaned Sample 6 Measurements Extras Deleted.csv")
+data = pd.read_csv("C:\\Users\\kwira\\Downloads\\cleaned Sample 6 Measurements Extras Deleted - cleaned Sample 6 Measurements Extras Deleted.csv")
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 #################### Adds wavelength values to list for graphing ####################
@@ -64,7 +64,7 @@ for (columnName, columnData) in data.iteritems():
         continue
     elif columnName == 'standard':
         y = data[f"{columnName}"].tolist()
-        ax.plot(wavelength, y, label=f"{columnName}", color='black', linewidth=0.5)
+        ax.plot(wavelength, y, label=f"{columnName}", color='black')
         minimum.append(min(y))
         maximum.append(max(y))
     elif columnName == 'blank':
