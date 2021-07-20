@@ -18,18 +18,11 @@ def comma_remover(sheet):
 
 
 
-
-# Call comma remover function to remove the commas from the first column of the file. 
+# Display total dataframe
 pd.set_option("display.max_rows", None, "display.max_columns", None)
-# print(comma_remover(y)[0])
-
-
 
 
 # Find NaN rows and shift data accordingly. 
-
-
-
 def data_shift(df_tuple: tuple):
     dfs_list = list()
     # Loop through each dataframe d, absorbance and transmittance
@@ -94,22 +87,14 @@ x = input('Name of new absorbance file: ')
 z = input('Name of new transmittance file: ')
 
 
+
 # --------- Finishing touches ----------
+# Name the absorbance and transmittance dataframes accordingly
 absorbance = data_shift(comma_remover(y))[0]
 transmittance = data_shift(comma_remover(y))[1]
 
 
-
-
-
-# print(absorbance.head())
-
-
 absorbance.to_csv(path_or_buf = x + ".csv")
-
 transmittance.to_csv(path_or_buf = z + ".csv")
 
 
-
-
-# 210427 Sample 6 Raw Data
