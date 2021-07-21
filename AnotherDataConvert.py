@@ -1,5 +1,7 @@
 from numpy import NaN, add
 import pandas as pd
+import Graph3D
+import Graph2D
 
 # Create function to remove commas from data values in csv file and create dataframes for the absorbance and transmittance values separately.  
 def comma_remover(sheet):
@@ -100,4 +102,5 @@ transmittance = data_shift(comma_remover(y))[1]
 absorbance.to_csv(path_or_buf = x + ".csv")
 transmittance.to_csv(path_or_buf = z + ".csv")
 
-
+Graph2D(absorbance, 'Absorbance (%)', abs_title)
+Graph2D(transmittance, 'Transmittance (%)', tra_title)
