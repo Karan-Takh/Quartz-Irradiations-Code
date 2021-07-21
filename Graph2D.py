@@ -116,7 +116,7 @@ def plot_2d(dataframe, y_label, title):
 
     #################### Sets the tick mark intervals ####################
     plt.xticks(np.arange(100, 1100+1, 100))
-    plt.yticks(np.arange(100, maxi + 1, 10))
+    # plt.yticks(np.arange(100, maxi + 1, 10))
 
     #################### Creates lines to show PMT sensitive region ####################
     xpmt1 = np.full(shape=len(list(range(truemin,truemax))), fill_value=200, dtype=int)

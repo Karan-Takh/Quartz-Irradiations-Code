@@ -1,6 +1,7 @@
 import pandas as pd
 from Graph3D import plot_3d
 from Graph2D import plot_2d
+import matplotlib.pyplot as plt
 
 # Create function to remove commas from data values in csv file and create dataframes for the absorbance and transmittance values separately.  
 def comma_remover(sheet):
@@ -80,29 +81,38 @@ def data_shift(df_tuple: tuple):
     return dfs_list
 
 
+# --------- Finishing touches ----------
+# Name the absorbance and transmittance dataframes accordingly
+
 # Get inputs for file to be opened and the names of the new absorbance and transmittance files. 
 y = input(
      'Enter the name of the data sheet you want to convert. Must be .csv. Please omit file ending (ie, do no type .csv): ')
 
-x = input('Name of new absorbance file: ')
-z = input('Name of new transmittance file: ')
 
-abs_title = input("Title of absorbance plot: ")
-tra_title = input("Title of transmittance plot: ")
-
-# --------- Finishing touches ----------
-# Name the absorbance and transmittance dataframes accordingly
 absorbance = data_shift(comma_remover(y))[0]
 transmittance = data_shift(comma_remover(y))[1]
 
 
-print(absorbance.head())
+
+""" x = input('Name of new absorbance file: ')
+z = input('Name of new transmittance file: ')
 
 absorbance.to_csv(path_or_buf = x + ".csv")
-transmittance.to_csv(path_or_buf = z + ".csv")
+transmittance.to_csv(path_or_buf = z + ".csv") """
+
+
+
+
+# Try plotting transmittance to see if data looks right
+""" absorbance = absorbance.astype(float)
+absorbance.plot()
+plt.show() """
+
 
 # Calling the functions from other scripts to plot the data in 2D or 3D. 
 def plotting():
+    abs_title = input("Title of absorbance plot: ")
+    tra_title = input("Title of transmittance plot: ")
     plot_type = input("Would you like to plot in 2D or 3D? Input '2D', '3D' or 'Both': ")
     if plot_type == '2D':
         plot_2d(absorbance, 'Absorbance (AU)', abs_title)
@@ -119,6 +129,7 @@ def plotting():
         print('Please input valid plot type.')
         plotting()
 
+
 plotting()
 
-# C:\Users\kdee2\Documents\GitHub\Quartz-Irradiations-Code\Sample 6 Raw Data.csv1
+# C:\Users\kdee2\Documents\GitHub\Quartz-Irradiations-Code\Sample 6 Raw Data
