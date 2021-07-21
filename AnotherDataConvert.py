@@ -85,8 +85,6 @@ def data_shift(df_tuple: tuple):
 y = input(
      'Enter the name of the data sheet you want to convert. Must be .csv. Please omit file ending (ie, do no type .csv): ')
 
-
-
 x = input('Name of new absorbance file: ')
 z = input('Name of new transmittance file: ')
 
@@ -119,3 +117,5 @@ def plotting():
     else:
         print('Input valid plot type.')
         plotting()
+
+plotting()
