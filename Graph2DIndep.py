@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-def plot_2d(dataframe, y_label, title):
+def plot_2d(file, y_label, title):
     #######################################################
     # file = input('Enter the csv file with .csv: ')
     # name = input('Enter the desired name of the graph: ')
@@ -10,22 +10,22 @@ def plot_2d(dataframe, y_label, title):
 
     #################### Converts csv to dataframe ####################
     #######################################################
-    # data = pd.read_csv(file)
+    data = pd.read_csv(file)
     #######################################################
     # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    data = dataframe
+    # data = pd.read_csv("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\2.csv")
     # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
     #################### Adds wavelength values to list for graphing ####################
-    wavelength = data.index.tolist()
+    wavelength = data["wavelength"].tolist()
 
     #################### Creates graph ####################
     fig, ax = plt.subplots()
 
     #################### Creates dictionary of colors in html format ####################
     color = ['#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
-            '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
-            '#993333']
+             '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
+             '#993333']
 
     #################### Function for graphing all lines in their respective colors ####################
     colornum = -1
@@ -59,6 +59,7 @@ def plot_2d(dataframe, y_label, title):
 
     nameid = 0
 
+
     for (columnName, columnData) in data.iteritems():
         if columnName == 'wavelength':
             continue
@@ -84,7 +85,7 @@ def plot_2d(dataframe, y_label, title):
             else:
                 colornum = colornum+1 # Changes the color to new color when there is a new batch
                 namedone.append(namelist[nameid])
-                y = data[f"{columnName}"].values.tolist()
+                y = data[f"{columnName}"].tolist()
                 scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
                 ax.plot(wavelength, y, label=f"{namelist[nameid]}", color=f"{color[colornum]}")
                 minimum.append(min(y))
@@ -93,13 +94,12 @@ def plot_2d(dataframe, y_label, title):
             nameid = nameid + 1
 
     truemin = int(min(minimum)) - 10
-    maxi = float(max(maximum))
-    truemax = int(maxi) + 10
+    truemax = int(max(maximum)) + 10
 
     #################### Adds labels to graph ####################
     plt.legend(bbox_to_anchor=(1, 1), loc='upper left')
     # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    # plt.title('Day 1 Sample 6 Measurements')
+    plt.title('Day 1 Sample 6 Measurements')
     # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     #######################################################
     plt.title(title)
@@ -108,14 +108,14 @@ def plot_2d(dataframe, y_label, title):
     plt.ylabel(y_label)
 
     #################### Sets size of figure ####################
-    # plt.ylim(truemin,truemax)
+    plt.ylim(truemin,truemax)
     plt.tight_layout()
     mng = plt.get_current_fig_manager()
     mng.window.state("zoomed")
 
     #################### Sets the tick mark intervals ####################
     plt.xticks(np.arange(100, 1100+1, 100))
-    # plt.yticks(np.arange(100, maxi + 1, 10))
+
     #################### Creates lines to show PMT sensitive region ####################
     xpmt1 = np.full(shape=len(list(range(truemin,truemax))), fill_value=200, dtype=int)
     ypmt1 = range(truemin, truemax)

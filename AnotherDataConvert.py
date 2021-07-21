@@ -1,7 +1,7 @@
 import pandas as pd
-from Graph3D import plot_3d
-from Graph2D import plot_2d
 import matplotlib.pyplot as plt
+from Graph3DIndep import plot_3d
+from Graph2DIndep import plot_2d
 
 # Create function to remove commas from data values in csv file and create dataframes for the absorbance and transmittance values separately.  
 def comma_remover(sheet):
@@ -21,7 +21,7 @@ def comma_remover(sheet):
 
 
 # Display total dataframe
-pd.set_option("display.max_rows", None, "display.max_columns", None)
+# pd.set_option("display.max_rows", None, "display.max_columns", None)
 
 
 # Find NaN rows and shift data accordingly. 
@@ -109,14 +109,21 @@ absorbance.plot()
 plt.show() """
 
 
+# print(absorbance.head())
+
+absfile = x + ".csv"
+trafile = z + ".csv"
+absorbance.to_csv(path_or_buf = absfile)
+transmittance.to_csv(path_or_buf = z + ".csv")
+
 # Calling the functions from other scripts to plot the data in 2D or 3D. 
 def plotting():
     abs_title = input("Title of absorbance plot: ")
     tra_title = input("Title of transmittance plot: ")
     plot_type = input("Would you like to plot in 2D or 3D? Input '2D', '3D' or 'Both': ")
     if plot_type == '2D':
-        plot_2d(absorbance, 'Absorbance (AU)', abs_title)
-        plot_2d(transmittance, 'Transmittance (%)', tra_title)
+        plot_2d(absfile, 'Absorbance (AU)', abs_title)
+        plot_2d(trafile, 'Transmittance (%)', tra_title)
     elif plot_type == '3D':
         plot_3d(absorbance, 'Absorbance (AU)', abs_title)
         plot_3d(transmittance, 'Transmittance (%)', tra_title)

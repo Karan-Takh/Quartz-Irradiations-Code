@@ -95,7 +95,7 @@ def plot_3d (dataframe, y_label, title):
             nameid = nameid + 1
 
     newmin = int(min(minimum)) - 10
-    newmax = int(max(maximum)) + 10
+    newmax = int(float(max(maximum))) + 10
 
     #################### Adds labels to graph ####################
     plt.legend(bbox_to_anchor=(1.1, 0.8), loc='upper left', ncol=2)
