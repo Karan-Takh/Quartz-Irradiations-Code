@@ -1,0 +1,2 @@
+def averages(dataframe):
+    
