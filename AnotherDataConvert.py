@@ -94,7 +94,11 @@ tra_title = input("Title of transmittance plot: ")
 # Name the absorbance and transmittance dataframes accordingly
 absorbance = data_shift(comma_remover(y))[0]
 transmittance = data_shift(comma_remover(y))[1]
+<<<<<<< Updated upstream
 
+=======
+# print(absorbance.head())
+>>>>>>> Stashed changes
 
 absorbance.to_csv(path_or_buf = x + ".csv")
 transmittance.to_csv(path_or_buf = z + ".csv")
