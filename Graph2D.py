@@ -85,7 +85,7 @@ def plot_2d(dataframe, y_label, title):
             else:
                 colornum = colornum+1 # Changes the color to new color when there is a new batch
                 namedone.append(namelist[nameid])
-                y = data[f"{columnName}"].tolist()
+                y = data[f"{columnName}"].values.tolist()
                 scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
                 ax.plot(wavelength, y, label=f"{namelist[nameid]}", color=f"{color[colornum]}")
                 minimum.append(min(y))
