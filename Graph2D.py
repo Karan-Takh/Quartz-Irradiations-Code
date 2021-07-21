@@ -94,7 +94,8 @@ def plot_2d(dataframe, y_label, title):
             nameid = nameid + 1
 
     truemin = int(min(minimum)) - 10
-    truemax = int(float(max(maximum))) + 10
+    maxi = max(maximum)
+    truemax = int(float(maxi)) + 10
 
     #################### Adds labels to graph ####################
     plt.legend(bbox_to_anchor=(1, 1), loc='upper left')
@@ -115,7 +116,7 @@ def plot_2d(dataframe, y_label, title):
 
     #################### Sets the tick mark intervals ####################
     plt.xticks(np.arange(100, 1100+1, 100))
-    plt.xticks(np.arange(100, max + 1, 10))
+    plt.yticks(np.arange(100, maxi + 1, 10))
 
     #################### Creates lines to show PMT sensitive region ####################
     xpmt1 = np.full(shape=len(list(range(truemin,truemax))), fill_value=200, dtype=int)
