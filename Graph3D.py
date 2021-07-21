@@ -18,7 +18,7 @@ def plot_3d (dataframe, y_label, title):
     # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
     #################### Adds wavelength values to list for graphing ####################
-    wavelength = data["wavelength"].tolist()
+    wavelength = data.index.tolist()
 
     #################### Makes plot 3D ####################
     ax = plt.axes(projection='3d')
