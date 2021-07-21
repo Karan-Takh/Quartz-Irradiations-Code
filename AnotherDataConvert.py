@@ -102,5 +102,7 @@ transmittance = data_shift(comma_remover(y))[1]
 absorbance.to_csv(path_or_buf = x + ".csv")
 transmittance.to_csv(path_or_buf = z + ".csv")
 
-Graph2D(absorbance, 'Absorbance (%)', abs_title)
+# Calling the functions from other scripts to plot the data in 2D or 3D. 
+plot_type = input("Would you like to plot in 2D or 3D? Input '2D' or '3D': ")
+Graph2D(absorbance, 'Absorbance (AU)', abs_title)
 Graph2D(transmittance, 'Transmittance (%)', tra_title)
