@@ -94,11 +94,9 @@ tra_title = input("Title of transmittance plot: ")
 # Name the absorbance and transmittance dataframes accordingly
 absorbance = data_shift(comma_remover(y))[0]
 transmittance = data_shift(comma_remover(y))[1]
-<<<<<<< Updated upstream
 
-=======
-# print(absorbance.head())
->>>>>>> Stashed changes
+
+print(absorbance.head())
 
 absorbance.to_csv(path_or_buf = x + ".csv")
 transmittance.to_csv(path_or_buf = z + ".csv")
@@ -123,4 +121,4 @@ def plotting():
 
 plotting()
 
-# C:\Users\kdee2\Documents\GitHub\Quartz-Irradiations-Code\Sample 6 Measurements (Extra scans deleted) - Sheet1 (1)
+# C:\Users\kdee2\Documents\GitHub\Quartz-Irradiations-Code\Sample 6 Raw Data.csv1
