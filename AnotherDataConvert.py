@@ -1,4 +1,3 @@
-from numpy import NaN, add
 import pandas as pd
 from Graph3D import plot_3d
 from Graph2D import plot_2d
@@ -96,7 +95,7 @@ tra_title = input("Title of transmittance plot: ")
 absorbance = data_shift(comma_remover(y))[0]
 transmittance = data_shift(comma_remover(y))[1]
 
-
+print(absorbance.head())
 absorbance.to_csv(path_or_buf = x + ".csv")
 transmittance.to_csv(path_or_buf = z + ".csv")
 
