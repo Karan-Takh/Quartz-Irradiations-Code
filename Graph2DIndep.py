@@ -17,7 +17,7 @@ def plot_2d(file, y_label, title):
     # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
     #################### Adds wavelength values to list for graphing ####################
-    wavelength = data["wavelength"].tolist()
+    wavelength = data.index.tolist()
 
     #################### Creates graph ####################
     fig, ax = plt.subplots()
