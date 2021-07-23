@@ -2,6 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from Graph3DIndep import plot_3d
 from Graph2DIndep import plot_2d
+from Averages import averages
+
 
 # Create function to remove commas from data values in csv file and create dataframes for the absorbance and transmittance values separately.  
 def comma_remover(sheet):
@@ -88,19 +90,10 @@ def data_shift(df_tuple: tuple):
 y = input(
      'Enter the name of the data sheet you want to convert. Must be .csv. Please omit file ending (ie, do no type .csv): ')
 
+dfs_list = data_shift(comma_remover(y))
 
-absorbance = data_shift(comma_remover(y))[0]
-transmittance = data_shift(comma_remover(y))[1]
-
-
-
-x = input('Name of new absorbance file: ')
-z = input('Name of new transmittance file: ')
-
-""" 
-absorbance.to_csv(path_or_buf = x + ".csv")
-transmittance.to_csv(path_or_buf = z + ".csv") """
-
+absorbance = dfs_list[0]
+transmittance = dfs_list[1]
 
 
 
@@ -110,12 +103,32 @@ absorbance.plot()
 plt.show() """
 
 
-# print(absorbance.head())
+
+x = input('Name of new absorbance file: ')
+z = input('Name of new transmittance file: ')
+
 
 absfile = x + ".csv"
 trafile = z + ".csv"
 absorbance.to_csv(path_or_buf = absfile)
-transmittance.to_csv(path_or_buf = z + ".csv")
+transmittance.to_csv(path_or_buf = trafile)
+
+
+avg_input = input("Would you like to also create files with each method averaged? Type Y or N: ")
+
+if avg_input == 'Y':
+    # Get names of new averaged files
+    abs_avg_file = input("Name of new averaged absorbance file: ")
+    tra_avg_file = input("Name of new averaged transmittance file: ")
+    # Assign the absorbance average and transmittance average files to their respective index in the list returned by the averages function. 
+    absorbance_avg = averages(dfs_list)[0]
+    transmittance_avg = averages(dfs_list)[1]
+    # Write the files to their own csvs.
+    absorbance_avg.to_csv(path_or_buf = abs_avg_file + ".csv")
+    transmittance_avg.to_csv(path_or_buf = tra_avg_file + ".csv")
+
+
+
 
 # Calling the functions from other scripts to plot the data in 2D or 3D.
 # def plotting():
