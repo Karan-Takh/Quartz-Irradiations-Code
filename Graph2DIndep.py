@@ -102,7 +102,7 @@ def plot_2d(file, y_label, title):
     plt.title('Day 1 Sample 6 Measurements')
     # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     #######################################################
-    plt.title(title)
+    # plt.title(title)
     #######################################################
     plt.xlabel("Wavelength (nm)")
     plt.ylabel(y_label)

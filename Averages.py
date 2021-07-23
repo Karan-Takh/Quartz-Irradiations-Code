@@ -3,7 +3,7 @@ from pandas.core.frame import DataFrame
 import numbers
 import matplotlib.pyplot as plt
 
-data = pd.read_csv("C:\\Users\kdee2\Documents\GitHub\Quartz-Irradiations-Code\\2.csv")
+data = pd.read_csv("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\2.csv")
 data = data.set_index('wavelength')
 print(data)
 wavelength = data.index.tolist()
