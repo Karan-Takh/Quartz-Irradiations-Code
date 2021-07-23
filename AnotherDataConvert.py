@@ -94,9 +94,10 @@ transmittance = data_shift(comma_remover(y))[1]
 
 
 
-""" x = input('Name of new absorbance file: ')
+x = input('Name of new absorbance file: ')
 z = input('Name of new transmittance file: ')
 
+""" 
 absorbance.to_csv(path_or_buf = x + ".csv")
 transmittance.to_csv(path_or_buf = z + ".csv") """
 

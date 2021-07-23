@@ -1,6 +1,7 @@
 import pandas as pd
 from pandas.core.frame import DataFrame
 import numbers
+import matplotlib.pyplot as plt
 
 data = pd.read_csv("C:\\Users\kdee2\Documents\GitHub\Quartz-Irradiations-Code\\2.csv")
 data = data.set_index('wavelength')
@@ -61,10 +62,12 @@ averaged_df = samename_df.groupby(by=samename_df.columns, axis=1).mean()
 print(averaged_df.head())
 
 
+averaged_df.plot()
+plt.show()
 
 
 
-nameid = 0
+""" nameid = 0
 
 for (columnName, columnData) in data.iteritems():
     if columnName == 'wavelength':
@@ -98,4 +101,4 @@ print(dflist)
 
 # for frame in dflist:
 #     frame['mean'] = frame.apply(np.mean, axis=1)
- 
+  """
