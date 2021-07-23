@@ -48,7 +48,7 @@ def averages(data: list):
                 fullname.append(convert(name))
                 namelist.append(convert(newname))
 
-        # namelist.insert(0, 'blank')
+        namelist.insert(0, 'blank')
         # print("The list of new column names is", namelist)
         # print(fullname)
 
