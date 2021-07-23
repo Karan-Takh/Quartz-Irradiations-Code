@@ -7,6 +7,7 @@ data = data.set_index('wavelength')
 print(data)
 wavelength = data.index.tolist()
 
+framenum = -1
 scan = 1
 minimum = []
 maximum = []
@@ -63,7 +64,7 @@ print(averaged_df.head())
 
 
 
-""" nameid = 0
+nameid = 0
 
 for (columnName, columnData) in data.iteritems():
     if columnName == 'wavelength':
@@ -74,12 +75,27 @@ for (columnName, columnData) in data.iteritems():
         continue
     else:
         if namelist[nameid] in namedone:
-            dfname = namelist[nameid]
-            dfname[f"{fullname[nameid]}"] = columnData
+            framenum[nameid] = columnData
+            # colname = namelist[nameid]
+            # dfname = namelist[nameid]
+            # dfname[colname] = columnData
         else:
-            namedone.append(namelist[nameid])
-            dfname = namelist[nameid]
-            dfname[f"{fullname[nameid]}"] = columnData
+            framenum = framenum + 1
+            dfname = framenum
+            # dfname = pd.concat(data[columnName], axis=1, keys=nameid)
+            dfname = data[[columnName]].copy()
             dflist.append(dfname)
+            # dfempty = pd.DataFrame(index=wavelength, columns='test')
+            # dfempty = df_.fillna(0)
+            # namedone.append(namelist[nameid])
+            # dfname = namelist[nameid]
+            # exec("%s = %d" % (dfname, dfempty))
+            # dfname[fullname[nameid]] = columnData
+            # dflist.append(dfname)
         nameid = nameid + 1
- """
+
+print(dflist)
+
+# for frame in dflist:
+#     frame['mean'] = frame.apply(np.mean, axis=1)
+ 
