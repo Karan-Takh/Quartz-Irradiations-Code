@@ -29,12 +29,15 @@ while hit == False:
 
 #Creates a list of all values in the dataframe at the desired wavelength
 lis = dframe.iloc[x].tolist()
-lis.pop(0)
+lis = lis[10:]
+# lis.pop(0)
+# lis.pop(4)
 
 #Creates the proper labels for the plot
-numbers = np.arange(0,81,1)
-columns = ["S","Pre","Post","1","2","3","4","5","6","7","8","9"]
-columnids = [1,5,9,49,53,57,61,65,69,73,77,81]
+numbers = np.arange(0,62,1)
+columns = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"]
+columnids = [1, 6, 10, 14, 18, 22, 26, 31, 35, 39, 43, 47, 51, 55, 59]
+# columnids = [10,14,18,22,26,30,34,38,42,46,50,54,58,62,66]
 
 
 #Plot shenanigans 
@@ -48,3 +51,8 @@ ax.set_xlabel("Irradiation #", fontsize = 12)
 ax.set_ylabel("Transmission (%)", fontsize = 12)
 ax.set_title("Transmission vs. Irradiation at \u03BB", fontsize = 12)
 ax.text(60,80,"\u03BB = {l} (nm)".format(l =l), fontsize = 12)
+
+plt.grid()
+plt.show()
+
+# C:\\Users\kdee2\Documents\GitHub\Quartz-Irradiations-Code\\S8 Transmittance.csv
