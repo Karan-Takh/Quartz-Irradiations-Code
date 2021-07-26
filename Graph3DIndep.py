@@ -94,8 +94,8 @@ def plot_3d(file, y_label, title):
                 scan = scan+1
             nameid = nameid + 1
 
-    newmin = int(min(minimum)) - 10
-    newmax = int(max(maximum)) + 10
+    newmin = int(min(minimum)) - 1
+    newmax = int(max(maximum)) + 1
 
     #################### Adds labels to graph ####################
     plt.legend(bbox_to_anchor=(1.1, 0.8), loc='upper left', ncol=2)

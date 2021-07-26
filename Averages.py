@@ -40,15 +40,16 @@ def averages(data: list):
                 continue
             if columnName == 'standard':
                 continue
-            elif columnName == 'blank':
-                continue
+            if columnName == 'blank':
+                fullname.append(convert(name))
+                namelist.append(convert(newname))
             else:
                 name = list(columnName)
                 newname = name[:-2]
                 fullname.append(convert(name))
                 namelist.append(convert(newname))
 
-        namelist.insert(0, 'blank')
+        # namelist.insert(0, 'blank')
         # print("The list of new column names is", namelist)
         # print(fullname)
 
@@ -58,10 +59,24 @@ def averages(data: list):
         # Using groupby function to average the columns with the same names
         # From https://stackoverflow.com/questions/40311987/pandas-mean-of-columns-with-the-same-names
         averaged_df = samename_df.groupby(by=samename_df.columns, axis=1).mean()
-        # Make sure to append this averaged dataframe to a list which can be returned from the function. 
+        # Make sure to append this averaged dataframe to a list which can be returned from the function.
         averaged_dataframes.append(averaged_df)
-        # Another way of doing it apparently: 
+        # Another way of doing it apparently:
         # averaged_df = samename_df.groupby(by=samename_df.columns, axis=1).apply(lambda g: g.mean(axis=1) if isinstance(g.iloc[0,0], numbers.Number) else g.iloc[:,0])
+
+    # #################### Finding the max and min of dataframe ####################
+    # maximum = data.max().max()
+    # minimum = data.min().min()
+    # truemin = int(min(minimum)) - 1
+    # truemax = int(max(maximum)) + 1
+    #
+    # #################### Creates lines to show PMT sensitive region ####################
+    # xpmt1 = np.full(shape=len(list(range(truemin,truemax))), fill_value=200, dtype=int)
+    # ypmt1 = range(truemin, truemax)
+    # xpmt2 = np.full(shape=len(list(range(truemin,truemax))), fill_value=600, dtype=int)
+    # ypmt2 = range(truemin, truemax)
+    # ax.plot(xpmt1, ypmt1, color='b', linewidth=2)
+    # ax.plot(xpmt2, ypmt2, color='b', linewidth=2)
 
     return averaged_dataframes
 

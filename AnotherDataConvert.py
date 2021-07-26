@@ -113,6 +113,25 @@ trafile = z + ".csv"
 absorbance.to_csv(path_or_buf = absfile)
 transmittance.to_csv(path_or_buf = trafile)
 
+# Calling the functions from other scripts to plot the data in 2D or 3D.
+def plotting():
+    abs_title = input("Title of absorbance plot: ")
+    tra_title = input("Title of transmittance plot: ")
+    plot_type = input("Would you like to plot in 2D or 3D? Input '2D', '3D' or 'Both': ")
+    if plot_type == '2D':
+        plot_2d(absfile, 'Absorbance (AU)', abs_title)
+        plot_2d(trafile, 'Transmittance (%)', tra_title)
+    elif plot_type == '3D':
+        plot_3d(absfile, 'Absorbance (AU)', abs_title)
+        plot_3d(trafile, 'Transmittance (%)', tra_title)
+    elif plot_type == 'Both':
+        plot_2d(absfile, 'Absorbance (AU)', abs_title)
+        plot_2d(trafile, 'Transmittance (%)', tra_title)
+        plot_3d(absfile, 'Absorbance (AU)', abs_title)
+        plot_3d(trafile, 'Transmittance (%)', tra_title)
+    else:
+        print('Please input valid plot type.')
+        plotting()
 
 avg_input = input("Would you like to also create files with each method averaged? Type Y or N: ")
 
@@ -126,31 +145,7 @@ if avg_input == 'Y':
     # Write the files to their own csvs.
     absorbance_avg.to_csv(path_or_buf = abs_avg_file + ".csv")
     transmittance_avg.to_csv(path_or_buf = tra_avg_file + ".csv")
-
-
-
-
-# Calling the functions from other scripts to plot the data in 2D or 3D.
-# def plotting():
-#     abs_title = input("Title of absorbance plot: ")
-#     tra_title = input("Title of transmittance plot: ")
-#     plot_type = input("Would you like to plot in 2D or 3D? Input '2D', '3D' or 'Both': ")
-#     if plot_type == '2D':
-#         plot_2d(absfile, 'Absorbance (AU)', abs_title)
-#         plot_2d(trafile, 'Transmittance (%)', tra_title)
-#     elif plot_type == '3D':
-#         plot_3d(absfile, 'Absorbance (AU)', abs_title)
-#         plot_3d(trafile, 'Transmittance (%)', tra_title)
-#     elif plot_type == 'Both':
-#         plot_2d(absfile, 'Absorbance (AU)', abs_title)
-#         plot_2d(trafile, 'Transmittance (%)', tra_title)
-#         plot_3d(absfile, 'Absorbance (AU)', abs_title)
-#         plot_3d(trafile, 'Transmittance (%)', tra_title)
-#     else:
-#         print('Please input valid plot type.')
-#         plotting()
-#
-#
-# plotting()
+else:
+    plotting()
 
 # C:\Users\kdee2\Documents\GitHub\Quartz-Irradiations-Code\Sample 6 Raw Data
