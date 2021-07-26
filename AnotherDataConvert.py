@@ -175,3 +175,5 @@ else:
 
 
 # C:\Users\kdee2\Documents\GitHub\Quartz-Irradiations-Code\Sample 6 Raw Data
+# C:\Users\kdee2\Documents\GitHub\Quartz-Irradiations-Code\S8 Unclean and Clean Data.csv
+# C:\Users\kdee2\Documents\GitHub\Quartz-Irradiations-Code\S7 Unclean and Clean Data.csv
