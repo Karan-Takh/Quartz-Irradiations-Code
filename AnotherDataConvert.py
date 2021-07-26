@@ -2,6 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from Graph3DIndep import plot_3d
 from Graph2DIndep import plot_2d
+from Graph2DAvg import plot_2dAvg
+from Graph3DAvg import plot_3dAvg
 from Averages import averages
 
 
@@ -133,19 +135,43 @@ def plotting():
         print('Please input valid plot type.')
         plotting()
 
+
+def plottingAvg():
+    abs_title = input("Title of absorbance plot: ")
+    tra_title = input("Title of transmittance plot: ")
+    plot_type = input("Would you like to plot in 2D or 3D? Input '2D', '3D' or 'Both': ")
+    if plot_type == '2D':
+        plot_2dAvg(absfile, 'Absorbance (AU)', abs_title)
+        plot_2dAvg(trafile, 'Transmittance (%)', tra_title)
+    elif plot_type == '3D':
+        plot_3dAvg(absfile, 'Absorbance (AU)', abs_title)
+        plot_3dAvg(trafile, 'Transmittance (%)', tra_title)
+    elif plot_type == 'Both':
+        plot_2dAvg(absfile, 'Absorbance (AU)', abs_title)
+        plot_2dAvg(trafile, 'Transmittance (%)', tra_title)
+        plot_3dAvg(absfile, 'Absorbance (AU)', abs_title)
+        plot_3dAvg(trafile, 'Transmittance (%)', tra_title)
+    else:
+        print('Please input valid plot type.')
+        plottingAvg()
+
 avg_input = input("Would you like to also create files with each method averaged? Type Y or N: ")
 
 if avg_input == 'Y':
     # Get names of new averaged files
     abs_avg_file = input("Name of new averaged absorbance file: ")
     tra_avg_file = input("Name of new averaged transmittance file: ")
-    # Assign the absorbance average and transmittance average files to their respective index in the list returned by the averages function. 
+    # Assign the absorbance average and transmittance average files to their respective index in the list returned by the averages function.
     absorbance_avg = averages(dfs_list)[0]
     transmittance_avg = averages(dfs_list)[1]
     # Write the files to their own csvs.
     absorbance_avg.to_csv(path_or_buf = abs_avg_file + ".csv")
     transmittance_avg.to_csv(path_or_buf = tra_avg_file + ".csv")
+    absfile = abs_avg_file + ".csv"
+    trafile = tra_avg_file + ".csv"
+    plottingAvg()
 else:
     plotting()
+
 
 # C:\Users\kdee2\Documents\GitHub\Quartz-Irradiations-Code\Sample 6 Raw Data
