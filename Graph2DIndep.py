@@ -50,7 +50,7 @@ def plot_2d(file, y_label, title):
         if columnName == 'standard':
             continue
         if columnName == 'blank':
-            namelist.append('blank')
+            continue
         else:
             name = list(columnName)
             name = name[:-2]

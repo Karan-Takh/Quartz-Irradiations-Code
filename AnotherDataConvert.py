@@ -141,16 +141,16 @@ def plottingAvg():
     tra_title = input("Title of transmittance plot: ")
     plot_type = input("Would you like to plot in 2D or 3D? Input '2D', '3D' or 'Both': ")
     if plot_type == '2D':
-        plot_2dAvg(absfile, 'Absorbance (AU)', abs_title)
-        plot_2dAvg(trafile, 'Transmittance (%)', tra_title)
+        plot_2dAvg(avgabsfile, 'Absorbance (AU)', abs_title)
+        plot_2dAvg(avgtrafile, 'Transmittance (%)', tra_title)
     elif plot_type == '3D':
-        plot_3dAvg(absfile, 'Absorbance (AU)', abs_title)
-        plot_3dAvg(trafile, 'Transmittance (%)', tra_title)
+        plot_3dAvg(avgabsfile, 'Absorbance (AU)', abs_title)
+        plot_3dAvg(avgtrafile, 'Transmittance (%)', tra_title)
     elif plot_type == 'Both':
-        plot_2dAvg(absfile, 'Absorbance (AU)', abs_title)
-        plot_2dAvg(trafile, 'Transmittance (%)', tra_title)
-        plot_3dAvg(absfile, 'Absorbance (AU)', abs_title)
-        plot_3dAvg(trafile, 'Transmittance (%)', tra_title)
+        plot_2dAvg(avgabsfile, 'Absorbance (AU)', abs_title)
+        plot_2dAvg(avgtrafile, 'Transmittance (%)', tra_title)
+        plot_3dAvg(avgabsfile, 'Absorbance (AU)', abs_title)
+        plot_3dAvg(avgtrafile, 'Transmittance (%)', tra_title)
     else:
         print('Please input valid plot type.')
         plottingAvg()
@@ -167,8 +167,8 @@ if avg_input == 'Y':
     # Write the files to their own csvs.
     absorbance_avg.to_csv(path_or_buf = abs_avg_file + ".csv")
     transmittance_avg.to_csv(path_or_buf = tra_avg_file + ".csv")
-    absfile = abs_avg_file + ".csv"
-    trafile = tra_avg_file + ".csv"
+    avgabsfile = abs_avg_file + ".csv"
+    avgtrafile = tra_avg_file + ".csv"
     plottingAvg()
 else:
     plotting()
