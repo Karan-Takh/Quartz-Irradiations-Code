@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.axes3d import Axes3D
 import numpy as np
 
-def plot_3d(file, y_label, title):
+def plot_3dAvg(file, y_label, title):
     #######################################################
     # file = input('Enter the csv file with .csv: ')
     # name = input('Enter the desired name of the graph: ')
@@ -37,15 +37,6 @@ def plot_3d(file, y_label, title):
     namedone = []
     nameid = 0
 
-    def convert(s):
-        # initialization of string to ""
-        new = ""
-        # traverse in the string
-        for x in s:
-            new += x
-            # return string
-        return new
-
     for (columnName, columnData) in data.iteritems():
         if columnName == 'wavelength':
             continue
@@ -54,9 +45,7 @@ def plot_3d(file, y_label, title):
         elif columnName == 'blank':
             continue
         else:
-            name = list(columnName)
-            name = name[:-2]
-            namelist.append(convert(name))
+            namelist.append(columnName)
 
     nameid = 0
 

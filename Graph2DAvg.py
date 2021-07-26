@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-def plot_2d(file, y_label, title):
+def plot_2dAvg(file, y_label, title):
     #######################################################
     # file = input('Enter the csv file with .csv: ')
     # name = input('Enter the desired name of the graph: ')
@@ -35,15 +35,6 @@ def plot_2d(file, y_label, title):
     namelist = []
     namedone = []
 
-    def convert(s):
-        # initialization of string to ""
-        new = ""
-        # traverse in the string
-        for x in s:
-            new += x
-            # return string
-        return new
-
     for (columnName, columnData) in data.iteritems():
         if columnName == 'wavelength':
             continue
@@ -52,9 +43,7 @@ def plot_2d(file, y_label, title):
         elif columnName == 'blank':
             continue
         else:
-            name = list(columnName)
-            name = name[:-2]
-            namelist.append(convert(name))
+            namelist.append(columnName)
 
     nameid = 0
 
@@ -98,13 +87,13 @@ def plot_2d(file, y_label, title):
     #################### Adds labels to graph ####################
     plt.legend(bbox_to_anchor=(1, 1), loc='upper left')
     # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    plt.title('Day 1 Sample 6 Measurements')
+    # plt.title('Day 1 Sample 6 Measurements')
     # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     #######################################################
-    # plt.title(title)
+    plt.title(title)
     #######################################################
     plt.xlabel("Wavelength (nm)")
-    plt.ylabel(title)
+    plt.ylabel(y_label)
 
     #################### Sets size of figure ####################
     plt.ylim(truemin,truemax)
