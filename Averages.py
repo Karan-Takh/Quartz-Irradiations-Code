@@ -41,8 +41,7 @@ def averages(data: list):
             if columnName == 'standard':
                 continue
             if columnName == 'blank':
-                fullname.append(convert(name))
-                namelist.append(convert(newname))
+                namelist.append('blank')
             else:
                 name = list(columnName)
                 newname = name[:-2]
@@ -77,7 +76,6 @@ def averages(data: list):
     # ypmt2 = range(truemin, truemax)
     # ax.plot(xpmt1, ypmt1, color='b', linewidth=2)
     # ax.plot(xpmt2, ypmt2, color='b', linewidth=2)
-
     return averaged_dataframes
 
 

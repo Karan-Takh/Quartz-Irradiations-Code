@@ -51,8 +51,8 @@ def plot_3d(file, y_label, title):
             continue
         if columnName == 'standard':
             continue
-        elif columnName == 'blank':
-            continue
+        if columnName == 'blank':
+            namelist.append('blank')
         else:
             name = list(columnName)
             name = name[:-2]
@@ -106,8 +106,8 @@ def plot_3d(file, y_label, title):
     plt.title(title)
     #######################################################
     ax.set_xlabel("Scan Number", size=15)
-    ax.set_ylabel(y_label, size=15)
-    ax.set_zlabel("Percent Transmission (%)", size=15)
+    ax.set_ylabel('Wavelength (nm0', size=15)
+    ax.set_zlabel(y_label, size=15)
 
     #################### Sets size of figure ####################
     ax.set_xlim(0,scan)

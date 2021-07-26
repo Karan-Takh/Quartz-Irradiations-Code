@@ -42,8 +42,8 @@ def plot_3dAvg(file, y_label, title):
             continue
         if columnName == 'standard':
             continue
-        elif columnName == 'blank':
-            continue
+        if columnName == 'blank':
+            namelist.append('blank')
         else:
             namelist.append(columnName)
 
@@ -95,8 +95,8 @@ def plot_3dAvg(file, y_label, title):
     plt.title(title)
     #######################################################
     ax.set_xlabel("Scan Number", size=15)
-    ax.set_ylabel(y_label, size=15)
-    ax.set_zlabel("Percent Transmission (%)", size=15)
+    ax.set_ylabel('Wavelength (nm)', size=15)
+    ax.set_zlabel(y_label, size=15)
 
     #################### Sets size of figure ####################
     ax.set_xlim(0,scan)

@@ -49,8 +49,8 @@ def plot_2d(file, y_label, title):
             continue
         if columnName == 'standard':
             continue
-        elif columnName == 'blank':
-            continue
+        if columnName == 'blank':
+            namelist.append('blank')
         else:
             name = list(columnName)
             name = name[:-2]

@@ -40,8 +40,8 @@ def plot_2dAvg(file, y_label, title):
             continue
         if columnName == 'standard':
             continue
-        elif columnName == 'blank':
-            continue
+        if columnName == 'blank':
+            namelist.append('blank')
         else:
             namelist.append(columnName)
 
