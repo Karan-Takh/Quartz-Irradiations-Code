@@ -9,14 +9,14 @@ import numpy as np
 
 #################### Converts csv to dataframe ####################
 #######################################################
-data = pd.read_csv('C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\S8 Day 1 Transmittance.csv')
+# data = pd.read_csv(file)
 #######################################################
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# data = file
+data = pd.read_csv("C:\\Users\\kwira\\Downloads\\S8 Day 1 Transmittance.csv")
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 #################### Adds wavelength values to list for graphing ####################
-wavelength = data.index.tolist()
+wavelength = data["wavelength"].tolist()
 
 #################### Creates graph ####################
 fig, ax = plt.subplots()
@@ -34,6 +34,17 @@ maximum = []
 namelist = []
 namedone = []
 
+
+def convert(s):
+    # initialization of string to ""
+    new = ""
+    # traverse in the string
+    for x in s:
+        new += x
+        # return string
+    return new
+
+
 for (columnName, columnData) in data.iteritems():
     if columnName == 'wavelength':
         continue
@@ -42,7 +53,9 @@ for (columnName, columnData) in data.iteritems():
     if columnName == 'blank':
         continue
     else:
-        namelist.append(columnName)
+        name = list(columnName)
+        name = name[:-2]
+        namelist.append(convert(name))
 
 nameid = 0
 
@@ -61,40 +74,49 @@ for (columnName, columnData) in data.iteritems():
         minimum.append(min(y))
         maximum.append(max(y))
     else:
-        if namelist[nameid] in namedone:
-            y = data[f"{columnName}"].tolist()
-            scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
-            ax.plot(wavelength, y, color=f"{color[colornum]}")
-            minimum.append(min(y))
-            maximum.append(max(y))
-            scan = scan + 1
-        else:
-            colornum = colornum + 1  # Changes the color to new color when there is a new batch
-            namedone.append(namelist[nameid])
-            y = data[f"{columnName}"].tolist()
-            scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
-            ax.plot(wavelength, y, label=f"{namelist[nameid]}", color=f"{color[colornum]}")
-            minimum.append(min(y))
-            maximum.append(max(y))
-            scan = scan + 1
+        colornum = colornum + 1
+        y = data[f"{columnName}"].tolist()
+        scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
+        ax.plot(wavelength, y)
+        scan = scan + 1
+
+        # if namelist[nameid] in namedone:
+        #     y = data[f"{columnName}"].tolist()
+        #     scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
+        #     ax.plot(wavelength, y, color=f"{color[colornum]}")
+        #     minimum.append(min(y))
+        #     maximum.append(max(y))
+        #     scan = scan + 1
+        # else:
+        #     colornum = colornum + 1  # Changes the color to new color when there is a new batch
+        #     namedone.append(namelist[nameid])
+        #     y = data[f"{columnName}"].tolist()
+        #     scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
+        #     ax.plot(wavelength, y, label=f"{namelist[nameid]}", color=f"{color[colornum]}")
+        #     minimum.append(min(y))
+        #     maximum.append(max(y))
+        #     scan = scan + 1
         nameid = nameid + 1
 
-truemin = int(min(minimum)) - 1
-truemax = int(max(maximum)) + 1
+# truemin = int(min(minimum)) - 1
+truemin = -1
+# truemax = int(max(maximum)) + 1
+truemax = 101
 
 #################### Adds labels to graph ####################
 plt.legend(bbox_to_anchor=(1, 1), loc='upper left')
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-plt.title('Sample 8 Day 1 Wavelength vs Transmission')
+plt.title('Sample 8 Day 1 Wavelength vs Transmittance')
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #######################################################
-plt.title(title)
+# plt.title(title)
 #######################################################
 plt.xlabel("Wavelength (nm)")
-plt.ylabel('Transmission(%)')
+plt.ylabel('Transmittance (%)')
 
 #################### Sets size of figure ####################
 plt.ylim(truemin, truemax)
+plt.xlim(190, 1000)
 plt.tight_layout()
 mng = plt.get_current_fig_manager()
 mng.window.state("zoomed")
@@ -111,4 +133,3 @@ ax.plot(xpmt1, ypmt1, color='b', linewidth=2)
 ax.plot(xpmt2, ypmt2, color='b', linewidth=2)
 
 plt.show()
-

@@ -16,6 +16,7 @@ dframe = pd.read_csv(address, delimiter=',', header = 0)
 
 wavelengths = dframe["wavelength"].tolist()
 
+
 # Input the wavelength used to make the plot (275 nm, 600 nm)
 l = int(input("Please enter the desired wavelength: "))
 
@@ -30,6 +31,7 @@ while hit == False:
 #Creates a list of all values in the dataframe at the desired wavelength
 lis = dframe.iloc[x].tolist()
 lis.pop(0)
+print(lis)
 
 #Creates the proper labels for the plot
 numbers = np.arange(0,81,1)

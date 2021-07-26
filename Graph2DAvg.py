@@ -17,7 +17,7 @@ def plot_2dAvg(file, y_label, title):
     # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
     #################### Adds wavelength values to list for graphing ####################
-    wavelength = data.index.tolist()
+    wavelength = data["wavelength"].tolist()
 
     #################### Creates graph ####################
     fig, ax = plt.subplots()
