@@ -24,7 +24,31 @@ def plot_3d(file, y_label, title):
     ax = plt.axes(projection='3d')
 
     #################### Creates dictionary of colors in html format ####################
-    color = ['#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
+    color = ['#009900', '#003399', '#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
+             '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
+             '#993333', '#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
+             '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
+             '#993333', '#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
+             '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
+             '#993333', '#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
+             '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
+             '#993333', '#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
+             '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
+             '#993333', '#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
+             '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
+             '#993333', '#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
+             '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
+             '#993333', '#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
+             '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
+             '#993333', '#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
+             '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
+             '#993333', '#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
+             '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
+             '#993333', '#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
+             '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
+             '#993333', '#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
+             '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
+             '#993333', '#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
              '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
              '#993333', '#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
              '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
@@ -56,17 +80,21 @@ def plot_3d(file, y_label, title):
             # return string
         return new
 
-    for (columnName, columnData) in data.iteritems():
-        if columnName == 'wavelength':
-            continue
-        if columnName == 'standard':
-            continue
-        if columnName == 'blank':
-            continue
-        else:
-            name = list(columnName)
-            name = name[:-2]
-            namelist.append(convert(name))
+    # for (columnName, columnData) in data.iteritems():
+    #     if columnName == 'wavelength':
+    #         continue
+    #     if columnName == 'standard':
+    #         continue
+    #     if columnName == 'blank':
+    #         continue
+    #     else:
+    #         name = list(columnName)
+    #         name = name[:-2]
+    #         if name[-1] == ' ':
+    #             name = name[:-1]
+    #             namelist.append(convert(name))
+    #         else:
+    #             namelist.append(convert(name))
 
     nameid = 0
 
@@ -109,13 +137,13 @@ def plot_3d(file, y_label, title):
             #     minimum.append(min(y))
             #     maximum.append(max(y))
             #     scan = scan+1
-            nameid = nameid + 1
+            # nameid = nameid + 1
 
-    newmin = int(min(minimum)) - 1
-    newmax = int(max(maximum)) + 1
+    newmin = int(min(minimum))
+    newmax = int(max(maximum))
 
     #################### Adds labels to graph ####################
-    # plt.legend(bbox_to_anchor=(1.1, 0.8), loc='upper left', ncol=3)
+    plt.legend(bbox_to_anchor=(1.1, 0.8), loc='upper left', ncol=2)
     # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     # plt.title('Sample 6 Day 1')
     # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -135,7 +163,7 @@ def plot_3d(file, y_label, title):
 
     #################### Sets the tick mark intervals ####################
     plt.autoscale(False)
-    plt.yticks(np.arange(100, 1100+1, 100))
+    plt.yticks(np.arange(100, 1100+1, 200))
     ax.set_zticks(np.arange(newmin, newmax+1, 10))
 
     # Makes z axis longer than x and y axes for better visibility
@@ -218,5 +246,5 @@ def plot_3d(file, y_label, title):
 
     plt.show()
 
-plot_3d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\S8 PostIrradDays2-4 Tra.csv",
-        'Transmittance (%)', 'S8 Post-Irradiation Days 2-4 Wavelength vs Transmittance')
+plot_3d("C:\\Users\\kwira\\Downloads\\S8 Days 1-5 Averaged Transmittance vs Wavelength.csv",
+        'Transmittance (%)', 'Sample 8 Days 1-5 Averaged Wavelength vs Transmission')
