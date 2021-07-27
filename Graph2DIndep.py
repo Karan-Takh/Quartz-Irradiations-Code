@@ -101,10 +101,10 @@ def plot_2d(file, y_label, title):
     plt.title('Day 1 Sample 6 Measurements')
     # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     #######################################################
-    # plt.title(title)
+    plt.title(title)
     #######################################################
     plt.xlabel("Wavelength (nm)")
-    plt.ylabel(title)
+    plt.ylabel(y_label)
 
     #################### Sets size of figure ####################
     plt.ylim(truemin,truemax)

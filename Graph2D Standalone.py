@@ -12,7 +12,7 @@ import numpy as np
 # data = pd.read_csv(file)
 #######################################################
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-data = pd.read_csv("C:\\Users\\kwira\\Downloads\\S8 Day 1 Transmittance.csv")
+data = pd.read_csv("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\S8 Day 1 Transmittance.csv")
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 #################### Adds wavelength values to list for graphing ####################
@@ -79,7 +79,8 @@ for (columnName, columnData) in data.iteritems():
         scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
         ax.plot(wavelength, y)
         scan = scan + 1
-
+        minimum.append(min(y))
+        maximum.append(max(y))
         # if namelist[nameid] in namedone:
         #     y = data[f"{columnName}"].tolist()
         #     scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
@@ -99,14 +100,14 @@ for (columnName, columnData) in data.iteritems():
         nameid = nameid + 1
 
 # truemin = int(min(minimum)) - 1
-truemin = -1
 # truemax = int(max(maximum)) + 1
+truemin = -1
 truemax = 101
 
 #################### Adds labels to graph ####################
 plt.legend(bbox_to_anchor=(1, 1), loc='upper left')
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-plt.title('Sample 8 Day 1 Wavelength vs Transmittance')
+plt.title('Sample 8 Day 1 Wavelength vs Transmission')
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #######################################################
 # plt.title(title)
@@ -116,7 +117,7 @@ plt.ylabel('Transmittance (%)')
 
 #################### Sets size of figure ####################
 plt.ylim(truemin, truemax)
-plt.xlim(190, 1000)
+plt.xlim(100, 1150)
 plt.tight_layout()
 mng = plt.get_current_fig_manager()
 mng.window.state("zoomed")
