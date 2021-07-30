@@ -80,21 +80,21 @@ def plot_3d(file, y_label, title):
             # return string
         return new
 
-    # for (columnName, columnData) in data.iteritems():
-    #     if columnName == 'wavelength':
-    #         continue
-    #     if columnName == 'standard':
-    #         continue
-    #     if columnName == 'blank':
-    #         continue
-    #     else:
-    #         name = list(columnName)
-    #         name = name[:-2]
-    #         if name[-1] == ' ':
-    #             name = name[:-1]
-    #             namelist.append(convert(name))
-    #         else:
-    #             namelist.append(convert(name))
+    for (columnName, columnData) in data.iteritems():
+        if columnName == 'wavelength':
+            continue
+        if columnName == 'standard':
+            continue
+        if columnName == 'blank':
+            continue
+        else:
+            name = list(columnName)
+            name = name[:-2]
+            if name[-1] == ' ':
+                name = name[:-1]
+                namelist.append(convert(name))
+            else:
+                namelist.append(convert(name))
 
     nameid = 0
 
@@ -114,30 +114,30 @@ def plot_3d(file, y_label, title):
             minimum.append(min(y))
             maximum.append(max(y))
         else:
-            colornum = colornum + 1
-            y = data[f"{columnName}"].tolist()
-            scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
-            ax.plot(scanlist, wavelength, y, label=f"{columnName}", color=f"{color[colornum]}")
-            scan = scan + 1
-            minimum.append(min(y))
-            maximum.append(max(y))
-            # if namelist[nameid] in namedone:
-            #     y = data[f"{columnName}"].tolist()
-            #     scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
-            #     ax.plot3D(scanlist, wavelength, y, color=f"{color[colornum]}")
-            #     minimum.append(min(y))
-            #     maximum.append(max(y))
-            #     scan = scan + 1
-            # else:
-            #     colornum = colornum+1 # Changes the color to new color when there is a new batch
-            #     namedone.append(namelist[nameid])
-            #     y = data[f"{columnName}"].tolist()
-            #     scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
-            #     ax.plot3D(scanlist, wavelength, y, label=f"{namelist[nameid]}", color=f"{color[colornum]}")
-            #     minimum.append(min(y))
-            #     maximum.append(max(y))
-            #     scan = scan+1
-            # nameid = nameid + 1
+            # colornum = colornum + 1
+            # y = data[f"{columnName}"].tolist()
+            # scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
+            # ax.plot(scanlist, wavelength, y, label=f"{columnName}", color=f"{color[colornum]}")
+            # scan = scan + 1
+            # minimum.append(min(y))
+            # maximum.append(max(y))
+            if namelist[nameid] in namedone:
+                y = data[f"{columnName}"].tolist()
+                scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
+                ax.plot3D(scanlist, wavelength, y, color=f"{color[colornum]}")
+                minimum.append(min(y))
+                maximum.append(max(y))
+                scan = scan + 1
+            else:
+                colornum = colornum+1 # Changes the color to new color when there is a new batch
+                namedone.append(namelist[nameid])
+                y = data[f"{columnName}"].tolist()
+                scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
+                ax.plot3D(scanlist, wavelength, y, label=f"{namelist[nameid]}", color=f"{color[colornum]}")
+                minimum.append(min(y))
+                maximum.append(max(y))
+                scan = scan+1
+            nameid = nameid + 1
 
     newmin = int(min(minimum))
     newmax = int(max(maximum))
@@ -246,5 +246,5 @@ def plot_3d(file, y_label, title):
 
     plt.show()
 
-plot_3d("C:\\Users\\kwira\\Downloads\\S8 Days 1-5 Averaged Transmittance vs Wavelength.csv",
-        'Transmittance (%)', 'Sample 8 Days 1-5 Averaged Wavelength vs Transmission')
+plot_3d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\cleaned S6 Transmittance.csv",
+        'Transmittance (%)', 'Sample 6 Day 1 - Transmission vs Wavelength')

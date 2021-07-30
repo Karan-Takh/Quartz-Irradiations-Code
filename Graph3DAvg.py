@@ -117,8 +117,8 @@ def plot_3dAvg(file, y_label, title):
                 scan = scan+1
             nameid = nameid + 1
 
-    newmin = int(min(minimum)) - 1
-    newmax = int(max(maximum)) + 1
+    newmin = int(min(minimum))
+    newmax = int(max(maximum))
 
     #################### Adds labels to graph ####################
     plt.legend(bbox_to_anchor=(1.1, 0.8), loc='upper left', ncol=2)
