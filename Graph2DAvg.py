@@ -115,8 +115,8 @@ def plot_2dAvg(file, y_label, title):
                 scan = scan+1
             nameid = nameid + 1
 
-    truemin = int(min(minimum)) - 1
-    truemax = int(max(maximum)) + 1
+    truemin = int(min(minimum))
+    truemax = int(max(maximum))
 
     #################### Adds labels to graph ####################
     plt.legend(bbox_to_anchor=(1, 1), loc='upper left', prop={"size":11.5})
