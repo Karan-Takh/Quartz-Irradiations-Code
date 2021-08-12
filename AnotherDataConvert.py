@@ -128,8 +128,8 @@ def plotting():
         plot_3d(absfile, 'Absorbance (AU)', abs_title)
         plot_3d(trafile, 'Transmittance (%)', tra_title)
     elif plot_type == 'Both':
-        plot_2d(absfile, 'Absorbance (AU)', abs_title)
-        plot_2d(trafile, 'Transmittance (%)', tra_title)
+        plot_2d(absfile, 'Absorbance (AU)', abs_title, 3)
+        plot_2d(trafile, 'Transmittance (%)', tra_title, 100)
         plot_3d(absfile, 'Absorbance (AU)', abs_title)
         plot_3d(trafile, 'Transmittance (%)', tra_title)
     else:
@@ -142,14 +142,14 @@ def plottingAvg():
     tra_title = input("Title of transmittance plot: ")
     plot_type = input("Would you like to plot in 2D or 3D? Input '2D', '3D' or 'Both': ")
     if plot_type == '2D':
-        plot_2dAvg(avgabsfile, 'Absorbance (AU)', abs_title)
-        plot_2dAvg(avgtrafile, 'Transmittance (%)', tra_title)
+        plot_2dAvg(avgabsfile, 'Absorbance (AU)', abs_title, 3)
+        plot_2dAvg(avgtrafile, 'Transmittance (%)', tra_title, 100)
     elif plot_type == '3D':
         plot_3dAvg(avgabsfile, 'Absorbance (AU)', abs_title)
         plot_3dAvg(avgtrafile, 'Transmittance (%)', tra_title)
     elif plot_type == 'Both':
-        plot_2dAvg(avgabsfile, 'Absorbance (AU)', abs_title)
-        plot_2dAvg(avgtrafile, 'Transmittance (%)', tra_title)
+        plot_2dAvg(avgabsfile, 'Absorbance (AU)', abs_title, 3)
+        plot_2dAvg(avgtrafile, 'Transmittance (%)', tra_title, 100)
         plot_3dAvg(avgabsfile, 'Absorbance (AU)', abs_title)
         plot_3dAvg(avgtrafile, 'Transmittance (%)', tra_title)
     else:
