@@ -121,8 +121,9 @@ def plotting():
     tra_title = input("Title of transmittance plot: ")
     plot_type = input("Would you like to plot in 2D or 3D? Input '2D', '3D' or 'Both': ")
     if plot_type == '2D':
-        plot_2d(absfile, 'Absorbance (AU)', abs_title)
-        plot_2d(trafile, 'Transmittance (%)', tra_title)
+        # Make the y-limit for absorbance 3, and the limit for tranmsittance 100. 
+        plot_2d(absfile, 'Absorbance (AU)', abs_title, 3)
+        plot_2d(trafile, 'Transmittance (%)', tra_title, 100)
     elif plot_type == '3D':
         plot_3d(absfile, 'Absorbance (AU)', abs_title)
         plot_3d(trafile, 'Transmittance (%)', tra_title)

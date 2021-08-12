@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-def plot_2dAvg(file, y_label, title):
+def plot_2dAvg(file, y_label, title, y_limit):
     #######################################################
     # file = input('Enter the csv file with .csv: ')
     # name = input('Enter the desired name of the graph: ')
@@ -140,9 +140,9 @@ def plot_2dAvg(file, y_label, title):
 
     #################### Creates lines to show PMT sensitive region ####################
     xpmt1 = np.full(shape=len(list(range(truemin,truemax))), fill_value=200, dtype=int)
-    ypmt1 = range(truemin, truemax)
+    ypmt1 = range(truemin, y_limit)
     xpmt2 = np.full(shape=len(list(range(truemin,truemax))), fill_value=600, dtype=int)
-    ypmt2 = range(truemin, truemax)
+    ypmt2 = range(truemin, y_limit)
     ax.plot(xpmt1, ypmt1, color='b', linewidth=2)
     ax.plot(xpmt2, ypmt2, color='b', linewidth=2)
 
