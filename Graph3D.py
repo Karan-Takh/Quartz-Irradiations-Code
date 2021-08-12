@@ -138,24 +138,24 @@ def plot_3d (dataframe, y_label, title):
     ax.get_proj=short_proj
 
     #################### Creates rectangular prism to show the PMT sensitive region ####################
-    zpmt = list(range(newmin, newmax))
-    xpmt = [0] * len(range(newmin, newmax))
-    ypmt = np.full(shape=len(list(range(newmin,newmax))), fill_value=200, dtype=int)
+    zpmt = list(range(newmin, newmax+1))
+    xpmt = [0] * len(range(newmin, newmax+1))
+    ypmt = np.full(shape=len(list(range(newmin,newmax+1))), fill_value=200, dtype=int)
     ax.plot3D(xpmt, ypmt, zpmt, color='b', linewidth=3)
 
-    zpmt = list(range(newmin, newmax))
-    xpmt = [scan] * len(range(newmin, newmax))
-    ypmt = np.full(shape=len(list(range(newmin,newmax))), fill_value=200, dtype=int)
+    zpmt = list(range(newmin, newmax+1))
+    xpmt = [scan] * len(range(newmin, newmax+1))
+    ypmt = np.full(shape=len(list(range(newmin,newmax+1))), fill_value=200, dtype=int)
     ax.plot3D(xpmt, ypmt, zpmt, color='b', linewidth=3)
 
-    zpmt = list(range(newmin, newmax))
-    xpmt = [0] * len(range(newmin, newmax))
-    ypmt = np.full(shape=len(list(range(newmin,newmax))), fill_value=600, dtype=int)
+    zpmt = list(range(newmin, newmax+1))
+    xpmt = [0] * len(range(newmin, newmax+1))
+    ypmt = np.full(shape=len(list(range(newmin,newmax+1))), fill_value=600, dtype=int)
     ax.plot3D(xpmt, ypmt, zpmt, color='b', linewidth=3)
 
-    zpmt = list(range(newmin, newmax))
-    xpmt = [scan] * len(range(newmin, newmax))
-    ypmt = np.full(shape=len(list(range(newmin,newmax))), fill_value=600, dtype=int)
+    zpmt = list(range(newmin, newmax+1))
+    xpmt = [scan] * len(range(newmin, newmax+1))
+    ypmt = np.full(shape=len(list(range(newmin,newmax+1))), fill_value=600, dtype=int)
     ax.plot3D(xpmt, ypmt, zpmt, color='b', linewidth=3)
 
     zpmt = [newmin] * len(range(0, scan+1))
@@ -178,24 +178,24 @@ def plot_3d (dataframe, y_label, title):
     ypmt = np.full(shape=len(list(range(0, scan+1))), fill_value=600, dtype=int)
     ax.plot3D(xpmt, ypmt, zpmt, color='b', linewidth=3)
 
-    zpmt = np.full(shape=len(list(range(200,600))), fill_value=newmin, dtype=int)
-    xpmt = [scan] * len(range(200,600))
-    ypmt = list(range(200, 600))
+    zpmt = np.full(shape=len(list(range(200,601))), fill_value=newmin, dtype=int)
+    xpmt = [scan] * len(range(200,601))
+    ypmt = list(range(200, 601))
     ax.plot3D(xpmt, ypmt, zpmt, color='b', linewidth=3)
 
-    zpmt = np.full(shape=len(list(range(200,600))), fill_value=newmax, dtype=int)
-    xpmt = [scan] * len(range(200,600))
-    ypmt = list(range(200, 600))
+    zpmt = np.full(shape=len(list(range(200,601))), fill_value=newmax, dtype=int)
+    xpmt = [scan] * len(range(200,601))
+    ypmt = list(range(200, 601))
     ax.plot3D(xpmt, ypmt, zpmt, color='b', linewidth=3)
 
-    zpmt = np.full(shape=len(list(range(200,600))), fill_value=newmin, dtype=int)
-    xpmt = [0] * len(range(200,600))
-    ypmt = list(range(200, 600))
+    zpmt = np.full(shape=len(list(range(200,601))), fill_value=newmin, dtype=int)
+    xpmt = [0] * len(range(200,601))
+    ypmt = list(range(200, 601))
     ax.plot3D(xpmt, ypmt, zpmt, color='b', linewidth=3)
 
-    zpmt = np.full(shape=len(list(range(200,600))), fill_value=newmax, dtype=int)
-    xpmt = [0] * len(range(200,600))
-    ypmt = list(range(200, 600))
+    zpmt = np.full(shape=len(list(range(200,601))), fill_value=newmax, dtype=int)
+    xpmt = [0] * len(range(200,601))
+    ypmt = list(range(200, 601))
     ax.plot3D(xpmt, ypmt, zpmt, color='b', linewidth=3)
 
     plt.show()
