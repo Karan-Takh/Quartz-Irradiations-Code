@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def plot_2d(file, y_label, title):
+    plt.rcParams["font.family"] = "Times New Roman"
+
     #######################################################
     # file = input('Enter the csv file with .csv: ')
     # name = input('Enter the desired name of the graph: ')
@@ -96,15 +98,17 @@ def plot_2d(file, y_label, title):
     truemax = int(max(maximum)) + 1
 
     #################### Adds labels to graph ####################
-    plt.legend(bbox_to_anchor=(1, 1), loc='upper left')
+    plt.legend(bbox_to_anchor=(1, 1), loc='upper left', prop={"size":14})
     # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     plt.title('Day 1 Sample 6 Measurements')
     # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     #######################################################
     plt.title(title)
     #######################################################
-    plt.xlabel("Wavelength (nm)")
-    plt.ylabel(y_label)
+    plt.xlabel("Wavelength (nm)", fontsize=20)
+    plt.ylabel(y_label, fontsize=20)
+    plt.xticks(fontsize=16)
+    plt.yticks(fontsize=16)
 
     #################### Sets size of figure ####################
     plt.ylim(truemin,truemax)

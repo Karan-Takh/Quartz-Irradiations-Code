@@ -4,6 +4,8 @@ from mpl_toolkits.mplot3d.axes3d import Axes3D
 import numpy as np
 
 def plot_3dAvg(file, y_label, title):
+    plt.rcParams["font.family"] = "Times New Roman"
+
     #######################################################
     # file = input('Enter the csv file with .csv: ')
     # name = input('Enter the desired name of the graph: ')
@@ -128,9 +130,9 @@ def plot_3dAvg(file, y_label, title):
     #######################################################
     plt.title(title)
     #######################################################
-    ax.set_xlabel("Scan Number", size=15)
-    ax.set_ylabel('Wavelength (nm)', size=15)
-    ax.set_zlabel(y_label, size=15)
+    ax.set_xlabel("Scan Number", size=16)
+    ax.set_ylabel('Wavelength (nm)', size=16)
+    ax.set_zlabel(y_label, size=16)
 
     #################### Sets size of figure ####################
     ax.set_xlim(0,scan)
@@ -142,10 +144,12 @@ def plot_3dAvg(file, y_label, title):
     plt.autoscale(False)
     plt.yticks(np.arange(100, 1100+1, 100))
     ax.set_zticks(np.arange(newmin, newmax+1, 10))
+    for t in ax.xaxis.get_major_ticks(): t.label.set_fontsize(13)
+    for t in ax.yaxis.get_major_ticks(): t.label.set_fontsize(13)
 
     # Makes z axis longer than x and y axes for better visibility
     ax.zaxis.set_tick_params(labelsize=1)
-    for t in ax.zaxis.get_major_ticks(): t.label.set_fontsize(10)
+    for t in ax.zaxis.get_major_ticks(): t.label.set_fontsize(13)
 
     x_scale=4
     y_scale=4.5

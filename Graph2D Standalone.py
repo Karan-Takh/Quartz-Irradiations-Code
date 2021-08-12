@@ -2,7 +2,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
+
+
 def plot_2d(file, y_label, title):
+    plt.rcParams["font.family"] = "Times New Roman"
+
     #######################################################
     # file = input('Enter the csv file with .csv: ')
     # name = input('Enter the desired name of the graph: ')
@@ -23,7 +27,7 @@ def plot_2d(file, y_label, title):
     fig, ax = plt.subplots()
 
     #################### Creates dictionary of colors in html format ####################
-    color = ['#009900', '#003399', '#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
+    color = ['#009900', '#00FFFF', '#003399', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
                  '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
                  '#993333', '#00FFFF', '#FF61B0', '#FF6600', '#006600', '#FFCC00', '#666699', '#FF0000', '#9900CC', '#66FF33', '#009999',
                  '#FF0066', '#993300', '#FF3300', '#660033', '#999966', '#4472C4', '#800000', '#7030A0', '#CC3300', '#CCCC00',
@@ -96,6 +100,12 @@ def plot_2d(file, y_label, title):
                 namelist.append(convert(name))
             else:
                 namelist.append(convert(name))
+            # if name[3] == 'P':
+            #     namelist.append(convert(name))
+            # else:
+            #     namelist.append('Irradiations')
+
+
 
     nameid = 0
 
@@ -114,30 +124,31 @@ def plot_2d(file, y_label, title):
             minimum.append(min(y))
             maximum.append(max(y))
         else:
-            colornum = colornum + 1
-            y = data[f"{columnName}"].tolist()
-            scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
-            ax.plot(wavelength, y)
-            scan = scan + 1
-            minimum.append(min(y))
+            # colornum = colornum + 1
+            # y = data[f"{columnName}"].tolist()
+            # scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
+            # ax.plot(wavelength, y, color=f"{color[colornum]}")
+            # # ax.plot(wavelength, y)
+            # scan = scan + 1
+            # minimum.append(min(y))
             # maximum.append(max(y))
-            # if namelist[nameid] in namedone:
-            #     y = data[f"{columnName}"].tolist()
-            #     scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
-            #     ax.plot(wavelength, y, color=f"{color[colornum]}")
-            #     minimum.append(min(y))
-            #     maximum.append(max(y))
-            #     scan = scan + 1
-            # else:
-            #     colornum = colornum + 1  # Changes the color to new color when there is a new batch
-            #     namedone.append(namelist[nameid])
-            #     y = data[f"{columnName}"].tolist()
-            #     scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
-            #     ax.plot(wavelength, y, label=f"{namelist[nameid]}", color=f"{color[colornum]}")
-            #     minimum.append(min(y))
-            #     maximum.append(max(y))
-            #     scan = scan + 1
-            # nameid = nameid + 1
+            if namelist[nameid] in namedone:
+                y = data[f"{columnName}"].tolist()
+                scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
+                ax.plot(wavelength, y, color=f"{color[colornum]}")
+                minimum.append(min(y))
+                maximum.append(max(y))
+                scan = scan + 1
+            else:
+                colornum = colornum + 1  # Changes the color to new color when there is a new batch
+                namedone.append(namelist[nameid])
+                y = data[f"{columnName}"].tolist()
+                scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
+                ax.plot(wavelength, y, label=f"{namelist[nameid]}", color=f"{color[colornum]}")
+                minimum.append(min(y))
+                maximum.append(max(y))
+                scan = scan + 1
+            nameid = nameid + 1
 
     # truemin = int(min(minimum))
     # truemax = int(max(maximum))
@@ -147,15 +158,17 @@ def plot_2d(file, y_label, title):
     truemax = 100
 
     #################### Adds labels to graph ####################
-    plt.legend(bbox_to_anchor=(1, 1), loc='upper left', prop={"size":11.5})
+    plt.legend(bbox_to_anchor=(1, 1), loc='upper left', prop={"size":14})
     # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     plt.title(title, fontsize=18)
     # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     #######################################################
     # plt.title(title)
     #######################################################
-    plt.xlabel("Wavelength (nm)", fontsize=16)
-    plt.ylabel(y_label, fontsize=16)
+    plt.xlabel("Wavelength (nm)", fontsize=20)
+    plt.ylabel(y_label, fontsize=20)
+    plt.xticks(fontsize=16)
+    plt.yticks(fontsize=16)
 
     #################### Sets size of figure ####################
     plt.ylim(truemin, truemax)
@@ -177,5 +190,8 @@ def plot_2d(file, y_label, title):
 
     plt.show()
 
-plot_2d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\cleaned S6 Transmittance.csv",
-        'Transmittance (%)', 'Sample 6 1st Irradiation - Wavelength vs Transmittance')
+plot_2d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\S8 Averaged Transmittance.csv",
+        'Transmittance (%)', 'Sample 8 Day 1 - Wavelength vs Transmittance')
+
+# plot_2d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\cleaned S6 Transmittance.csv",
+#         'Transmittance (%)', 'Sample 6 Day 1 - Wavelength vs Transmittance')
