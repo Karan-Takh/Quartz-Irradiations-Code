@@ -144,7 +144,7 @@ def plot_3d(file, y_label, title):
     ax.set_xlim(0,scan)
     plt.tight_layout()
     mng = plt.get_current_fig_manager()
-    mng.window.state("zoomed")
+    # mng.window.state("zoomed")
 
     #################### Sets the tick mark intervals ####################
     plt.autoscale(False)

@@ -196,8 +196,5 @@ def plot_2d(file, y_label, title):
 
     plt.show()
 
-plot_2d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\S8 Averaged Absorbance.csv",
-        'Transmittance (%)', 'Sample 8 Day 1 - Wavelength vs Transmittance')
-
-# plot_2d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\S10Tra.csv",
-#         'Transmittance (%)', 'Sample 10 Day 1 - Wavelength vs Transmittance')
+# plot_2d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\S8 Averaged Absorbance.csv",
+#         'Transmittance (%)', 'Sample 8 Day 1 - Wavelength vs Transmittance')

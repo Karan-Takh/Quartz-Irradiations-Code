@@ -136,7 +136,7 @@ def plot_2dAvg(file, y_label, title, y_limit):
     plt.ylim(truemin,truemax)
     plt.tight_layout()
     mng = plt.get_current_fig_manager()
-    mng.window.state("zoomed")
+    # mng.window.state("zoomed")
 
     #################### Sets the tick mark intervals ####################
     plt.xticks(np.arange(100, 1100+1, 100))
