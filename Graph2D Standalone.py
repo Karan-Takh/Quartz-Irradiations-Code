@@ -124,37 +124,37 @@ def plot_2d(file, y_label, title):
             minimum.append(min(y))
             maximum.append(max(y))
         else:
-            # colornum = colornum + 1
-            # y = data[f"{columnName}"].tolist()
-            # scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
+            colornum = colornum + 1
+            y = data[f"{columnName}"].tolist()
+            scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
             # ax.plot(wavelength, y, color=f"{color[colornum]}")
-            # # ax.plot(wavelength, y)
-            # scan = scan + 1
-            # minimum.append(min(y))
-            # maximum.append(max(y))
-            if namelist[nameid] in namedone:
-                y = data[f"{columnName}"].tolist()
-                scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
-                ax.plot(wavelength, y, color=f"{color[colornum]}")
-                minimum.append(min(y))
-                maximum.append(max(y))
-                scan = scan + 1
-            else:
-                colornum = colornum + 1  # Changes the color to new color when there is a new batch
-                namedone.append(namelist[nameid])
-                y = data[f"{columnName}"].tolist()
-                scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
-                ax.plot(wavelength, y, label=f"{namelist[nameid]}", color=f"{color[colornum]}")
-                minimum.append(min(y))
-                maximum.append(max(y))
-                scan = scan + 1
+            ax.plot(wavelength, y, label=f"{namelist[nameid]}", color=f"{color[colornum]}")
+            scan = scan + 1
+            minimum.append(min(y))
+            maximum.append(max(y))
+            # if namelist[nameid] in namedone:
+            #     y = data[f"{columnName}"].tolist()
+            #     scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
+            #     ax.plot(wavelength, y, color=f"{color[colornum]}")
+            #     minimum.append(min(y))
+            #     maximum.append(max(y))
+            #     scan = scan + 1
+            # else:
+            #     colornum = colornum + 1  # Changes the color to new color when there is a new batch
+            #     namedone.append(namelist[nameid])
+            #     y = data[f"{columnName}"].tolist()
+            #     scanlist = np.full(shape=len(wavelength), fill_value=scan, dtype=int)
+            #     ax.plot(wavelength, y, label=f"{namelist[nameid]}", color=f"{color[colornum]}")
+            #     minimum.append(min(y))
+            #     maximum.append(max(y))
+            #     scan = scan + 1
             nameid = nameid + 1
 
-    # truemin = int(min(minimum))
+    truemin = int(min(minimum))
     # truemax = int(max(maximum))
     # print(truemax)
     # print(truemin)
-    truemin = 0
+    # truemin = 0
     truemax = 100
 
     #################### Adds labels to graph ####################
@@ -175,7 +175,7 @@ def plot_2d(file, y_label, title):
     plt.xlim(100, 1150)
     plt.tight_layout()
     mng = plt.get_current_fig_manager()
-    mng.window.state("zoomed")
+    # mng.window.state("zoomed")
 
     #################### Sets the tick mark intervals ####################
     plt.xticks(np.arange(100, 1100 + 1, 100))
@@ -185,13 +185,19 @@ def plot_2d(file, y_label, title):
     ypmt1 = range(truemin, truemax)
     xpmt2 = np.full(shape=len(list(range(truemin, truemax))), fill_value=600, dtype=int)
     ypmt2 = range(truemin, truemax)
+
+    # xpmt1 = np.full(shape=len(list(range(truemin, truemax + 1))), fill_value=200, dtype=int)
+    # ypmt1 = range(truemin, truemax + 1)
+    # xpmt2 = np.full(shape=len(list(range(truemin, truemax + 1))), fill_value=600, dtype=int)
+    # ypmt2 = range(truemin, truemax + 1)
+
     ax.plot(xpmt1, ypmt1, color='b', linewidth=2)
     ax.plot(xpmt2, ypmt2, color='b', linewidth=2)
 
     plt.show()
 
-plot_2d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\S8 Averaged Transmittance.csv",
+plot_2d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\S8 Averaged Absorbance.csv",
         'Transmittance (%)', 'Sample 8 Day 1 - Wavelength vs Transmittance')
 
-# plot_2d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\cleaned S6 Transmittance.csv",
-#         'Transmittance (%)', 'Sample 6 Day 1 - Wavelength vs Transmittance')
+# plot_2d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\S10Tra.csv",
+#         'Transmittance (%)', 'Sample 10 Day 1 - Wavelength vs Transmittance')

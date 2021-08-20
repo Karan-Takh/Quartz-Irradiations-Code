@@ -91,7 +91,7 @@ def plot_3d(file, y_label, title):
             continue
         else:
             name = list(columnName)
-            name = name[:-2]
+            # name = name[:-2]
             if name[-1] == ' ':
                 name = name[:-1]
                 namelist.append(convert(name))
@@ -256,7 +256,7 @@ def plot_3d(file, y_label, title):
 
     plt.show()
 
-# plot_3d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\S8 Days 1-5 Transmittance.csv",
+# plot_3d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\S8 Day 1 Transmittance.csv",
 #         'Transmittance (%)', 'Sample 8 Days 1-5 - Transmission vs Wavelength')
-plot_3d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\cleaned S6 Transmittance.csv",
+plot_3d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\S6 Post Irrad Day 1 Transmittance with Avg Irrad 9.csv",
         'Transmittance (%)', 'Sample 6 Day 1 - Transmission vs Wavelength')
