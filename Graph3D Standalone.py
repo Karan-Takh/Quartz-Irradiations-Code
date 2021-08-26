@@ -252,6 +252,9 @@ def plot_3d(file, y_label, title):
     zpmt = np.full(shape=len(list(range(200,600))), fill_value=newmax, dtype=int)
     xpmt = [0] * len(range(200,600))
     ypmt = list(range(200, 600))
+
+    # Add text indicating the PMT sensitive. 
+    ax.text(190, 60, 'PMT Sensitive Region', color='blue', rotation='vertical')
     ax.plot3D(xpmt, ypmt, zpmt, color='b', linewidth=3)
 
     plt.show()
