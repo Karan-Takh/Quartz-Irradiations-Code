@@ -254,7 +254,7 @@ def plot_3d(file, y_label, title):
     ypmt = list(range(200, 600))
 
     # Add text indicating the PMT sensitive. 
-    ax.text(190, 60, 'PMT Sensitive Region', color='blue', rotation='vertical')
+    ax.text(0, 190, 60, s='PMT Sensitive Region', fontdict=None, color='blue', rotation=90)
     ax.plot3D(xpmt, ypmt, zpmt, color='b', linewidth=3)
 
     plt.show()
@@ -263,4 +263,4 @@ def plot_3d(file, y_label, title):
 #         'Transmittance (%)', 'Sample 8 Days 1-5 - Transmission vs Wavelength')
 
 
-plot_3d("S10 Tra", 'Transmittance (%)', 'Sample 10 3D Transmittance Plot')
+plot_3d("S10 Tra.csv", 'Transmittance (%)', 'Sample 10 3D Transmittance Plot')
