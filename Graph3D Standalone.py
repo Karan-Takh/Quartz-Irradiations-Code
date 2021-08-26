@@ -261,5 +261,6 @@ def plot_3d(file, y_label, title):
 
 # plot_3d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\S8 Day 1 Transmittance.csv",
 #         'Transmittance (%)', 'Sample 8 Days 1-5 - Transmission vs Wavelength')
-plot_3d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\S6 Post Irrad Day 1 Transmittance with Avg Irrad 9.csv",
-        'Transmittance (%)', 'Sample 6 Day 1 - Transmission vs Wavelength')
+
+
+plot_3d("S10 Tra", 'Transmittance (%)', 'Sample 10 3D Transmittance Plot')
