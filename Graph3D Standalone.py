@@ -263,4 +263,4 @@ def plot_3d(file, y_label, title):
 #         'Transmittance (%)', 'Sample 8 Days 1-5 - Transmission vs Wavelength')
 
 
-plot_3d("S10 Tra.csv", 'Transmittance (%)', 'Sample 10 3D Transmittance Plot')
+# plot_3d("S10 Tra.csv", 'Transmittance (%)', 'Sample 10 3D Transmittance Plot')
