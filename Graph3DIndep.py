@@ -73,6 +73,15 @@ def plot_3d(file, y_label, title):
     namedone = []
     nameid = 0
 
+    def convert(s):
+        # initialization of string to ""
+        new = ""
+        # traverse in the string
+        for x in s:
+            new += x
+            # return string
+        return new
+
     for (columnName, columnData) in data.iteritems():
         if columnName == 'wavelength':
             continue
