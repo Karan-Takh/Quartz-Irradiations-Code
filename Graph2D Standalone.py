@@ -198,3 +198,6 @@ def plot_2d(file, y_label, title):
 
 # plot_2d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\S8 Averaged Absorbance.csv",
 #         'Transmittance (%)', 'Sample 8 Day 1 - Wavelength vs Transmittance')
+
+plot_2d("C:\\Users\kdee2\Documents\GitHub\Quartz-Irradiations-Code\\Sample 9 Tra.csv",
+        'Transmittance (%)', 'Sample 9 Transmittance')
