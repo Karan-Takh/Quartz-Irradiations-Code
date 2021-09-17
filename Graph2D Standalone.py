@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-
-def plot_2d(file, y_label, title):
+# Define the function. File name, y-axis label, plot title, and the maximum of the plot. For absorbance plots, this should be 3. For transmittance, it will be 100.
+def plot_2d(file, y_label, title, truemax):
     plt.rcParams["font.family"] = "Times New Roman"
 
     #######################################################
@@ -155,7 +155,7 @@ def plot_2d(file, y_label, title):
     # print(truemax)
     # print(truemin)
     # truemin = 0
-    truemax = 100
+    # truemax = 100
 
     #################### Adds labels to graph ####################
     plt.legend(bbox_to_anchor=(1, 1), loc='upper left', prop={"size":14})
@@ -181,10 +181,10 @@ def plot_2d(file, y_label, title):
     plt.xticks(np.arange(100, 1100 + 1, 100))
 
     #################### Creates lines to show PMT sensitive region ####################
-    xpmt1 = np.full(shape=len(list(range(truemin, truemax))), fill_value=200, dtype=int)
-    ypmt1 = range(truemin, truemax)
-    xpmt2 = np.full(shape=len(list(range(truemin, truemax))), fill_value=600, dtype=int)
-    ypmt2 = range(truemin, truemax)
+    xpmt1 = np.full(shape=len(list(range(truemin, truemax+1))), fill_value=200, dtype=int)
+    ypmt1 = range(truemin, truemax+1)
+    xpmt2 = np.full(shape=len(list(range(truemin, truemax+1))), fill_value=600, dtype=int)
+    ypmt2 = range(truemin, truemax+1)
 
     # xpmt1 = np.full(shape=len(list(range(truemin, truemax + 1))), fill_value=200, dtype=int)
     # ypmt1 = range(truemin, truemax + 1)
@@ -199,4 +199,8 @@ def plot_2d(file, y_label, title):
 # plot_2d("C:\\Users\\kwira\\OneDrive\\Documents\\GitHub\\Quartz-Irradiations-Code\\S8 Averaged Absorbance.csv",
 #         'Transmittance (%)', 'Sample 8 Day 1 - Wavelength vs Transmittance')
 
-plot_2d("S9 Avg Tra.csv", 'Transmittance (%)', 'Sample 9 Transmittance')
+
+
+# plot_2d("S9 Avg Tra.csv", 'Transmittance (%)', 'Sample 9 Transmittance')
+plot_2d("S9 Avg Abs.csv", 'Absorbance', 'Sample 9 Absorbance', 3)
+
