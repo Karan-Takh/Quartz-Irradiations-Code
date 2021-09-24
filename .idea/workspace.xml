@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8cc988ee-d65b-48cd-90a2-dbd0ac4a18c3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Graph3DIndep.py" beforeDir="false" afterPath="$PROJECT_DIR$/Graph3DIndep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +23,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
   </component>
   <component name="RunManager">
     <configuration name="AnotherDataConvert" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
