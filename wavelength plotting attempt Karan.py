@@ -9,7 +9,6 @@ import matplotlib.pyplot as plt
 x = input("Input csv file name (omit .csv): ")
 df = pd.read_csv(x + ".csv")
 
-print(df.head())
 
 w = int(input("Input wavelength: "))
 
@@ -26,5 +25,23 @@ columns = columns[2:]
 print(columns)
 
 
-plt.plot(columns, transmittances, 'o', color='g')
+# Make the array of the pulses (this will vary by experiment. For sample 9, it was 20,000 pulses each time)
+pulses = [20000, 40000, 60000, 80000, 100000, 120000, 140000, 
+        160000, 180000, 200000, 220000, 240000, 260000, 280000, 300000]
+
+
+
+# Make the figure
+fig, ax = plt.subplots()
+ax.set_xlabel('Pulses / Irradiation')
+ax.set_ylabel('Transmittance')
+ax.plot(columns, transmittances, 'o', color='g')
+
+# Add second axis
+axes1 = plt.gca()
+axes2 = axes1.twiny()
+axes2.set_xticks([pulses]) # not sure if need brackets
+axes2.set_xlabel("Pulses")
+
+
 plt.show()
