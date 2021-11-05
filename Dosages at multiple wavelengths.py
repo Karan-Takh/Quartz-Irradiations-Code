@@ -1,5 +1,5 @@
 #Graph of %T vs Dosage at up to four different wavelengths
-# Use TransDosage1
+# Use TransDosage
 import pandas as pd
 import matplotlib.pyplot as plt
 

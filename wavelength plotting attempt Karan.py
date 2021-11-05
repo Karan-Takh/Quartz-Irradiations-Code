@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 x = input("Input csv file name (omit .csv): ")
 df = pd.read_csv(x + ".csv")
 
-print(df.head())
+# print(df.head())
 w = int(input("Input wavelength: "))
 
 
