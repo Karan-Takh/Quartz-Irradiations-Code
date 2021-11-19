@@ -183,7 +183,7 @@ def plot_2d(file, y_label, title, truemax):
     #################### Creates lines to show PMT sensitive region ####################
     xpmt1 = np.full(shape=len(list(range(truemin, truemax+1))), fill_value=200, dtype=int)
     ypmt1 = range(truemin, truemax+1)
-    xpmt2 = np.full(shape=len(list(range(truemin, truemax+1))), fill_value=600, dtype=int)
+    xpmt2 = np.full(shape=len(list(range(truemin, truemax+1))), fill_value=500, dtype=int)
     ypmt2 = range(truemin, truemax+1)
 
     # xpmt1 = np.full(shape=len(list(range(truemin, truemax + 1))), fill_value=200, dtype=int)
@@ -203,7 +203,11 @@ def plot_2d(file, y_label, title, truemax):
 
 # plot_2d("S9 Avg Tra.csv", 'Transmittance (%)', 'Sample 9 Transmittance')
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 plot_2d("C:\\Users\\kdee2\\Documents\\GitHub\\Quartz-Irradiations-Code\\Avg Tra Quartz Block Fiber Tests.csv", 
+=======
+plot_2d("C:\\Users\kdee2\Documents\GitHub\Quartz-Irradiations-Code\\11-9 _ 11-10 Quartz Block Fiber Tests\\All methods together\Avg Tra Quartz Block Fiber Tests.csv", 
+>>>>>>> Stashed changes
         'Transmittance', 'Quartz Block Fiber Tests', 100)
 =======
 plot_2d("S10 Avg Tra.csv", 'Transmittance (%)', 'Sample 10 Transmittance', 100)
