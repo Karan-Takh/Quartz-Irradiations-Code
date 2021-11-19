@@ -202,14 +202,12 @@ def plot_2d(file, y_label, title, truemax):
 
 
 # plot_2d("S9 Avg Tra.csv", 'Transmittance (%)', 'Sample 9 Transmittance')
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-plot_2d("C:\\Users\\kdee2\\Documents\\GitHub\\Quartz-Irradiations-Code\\Avg Tra Quartz Block Fiber Tests.csv", 
-=======
+
+
 plot_2d("C:\\Users\kdee2\Documents\GitHub\Quartz-Irradiations-Code\\11-9 _ 11-10 Quartz Block Fiber Tests\\All methods together\Avg Tra Quartz Block Fiber Tests.csv", 
->>>>>>> Stashed changes
         'Transmittance', 'Quartz Block Fiber Tests', 100)
-=======
+
+        
 plot_2d("S10 Avg Tra.csv", 'Transmittance (%)', 'Sample 10 Transmittance', 100)
->>>>>>> Stashed changes
+
 
