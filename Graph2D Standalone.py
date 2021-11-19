@@ -202,6 +202,6 @@ def plot_2d(file, y_label, title, truemax):
 
 
 # plot_2d("S9 Avg Tra.csv", 'Transmittance (%)', 'Sample 9 Transmittance')
-plot_2d("C:\\Users\kdee2\Documents\\GitHub\\Quartz-Irradiations-Code\\unirradiated quartz block with fibers\\Avg TRA unirrad fiber block.csv", 
-        'Transmittance', 'Unirradiated Quartz Block With Green Shifting Fibers', 100)
+plot_2d("C:\\Users\\kdee2\\Documents\\GitHub\\Quartz-Irradiations-Code\\Avg Tra Quartz Block Fiber Tests.csv", 
+        'Transmittance', 'Quartz Block Fiber Tests', 100)
 
